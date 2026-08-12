@@ -357,7 +357,7 @@ body{
   margin-top:8px;
 }
 
-.tabs input{
+.tabs > input[type="radio"]{
   position:absolute;
   opacity:0;
   pointer-events:none;
@@ -429,6 +429,110 @@ body{
   border-radius:10px;
   padding:9px 10px;
   font-size:13px;
+}
+
+.gcs-form input,
+.gcs-form textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  color: var(--ink);
+  border-radius:10px;
+  padding:9px 10px;
+  font-size:13px;
+  font-family:'Inter', sans-serif;
+}
+
+.gcs-form textarea{
+  resize: vertical;
+  min-height:84px;
+}
+
+.gaso-form{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+}
+
+.gaso-item{
+  display:grid;
+  gap:4px;
+}
+
+.gaso-field{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#FAF8F3;
+  padding:10px;
+  display:grid;
+  gap:6px;
+}
+
+.gaso-ref{
+  margin:0;
+  font-size:11px;
+  color: var(--ink-soft);
+  line-height:1.35;
+}
+
+.gasometria-panel-calculadora .gaso-ref{
+  font-size:11px;
+}
+
+.gasometria-panel-calculadora .gcs-result{
+  gap:6px;
+}
+
+.gasometria-panel-calculadora .gcs-result-item{
+  padding:8px 9px;
+  border-radius:10px;
+}
+
+.gasometria-panel-calculadora .gcs-result-item span{
+  font-size:10px;
+}
+
+.gasometria-panel-calculadora .gcs-result-item strong{
+  font-size:20px;
+}
+
+.gaso-actions{
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 700px){
+  .gaso-form{
+    grid-template-columns: 1fr;
+  }
+}
+
+.gcs-actions{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:8px;
+  margin-top:4px;
+}
+
+.gcs-action-btn{
+  border:0;
+  border-radius:10px;
+  background: linear-gradient(140deg, var(--teal), var(--teal-deep));
+  color:#fff;
+  padding:10px 12px;
+  font-family:'Outfit', sans-serif;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.gcs-action-btn.is-secondary{
+  background:#F2EEE5;
+  color: var(--teal-deep);
+  border:1px solid var(--line);
+}
+
+.gcs-action-btn:hover,
+.gcs-action-btn:focus-visible{
+  filter: brightness(1.05);
 }
 
 .gcs-result{
@@ -534,12 +638,231 @@ body{
   color: var(--ink-soft);
 }
 
+.gcs-severity-desc{
+  margin-top:8px;
+  font-size:12px;
+  line-height:1.45;
+  color: var(--ink-soft);
+}
+
+.gaso-ajustes{
+  margin-top:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#FAF8F3;
+  padding:9px 10px;
+}
+
+.gaso-ajustes-title{
+  margin:0;
+  font-size:12px;
+  font-weight:700;
+  color: var(--teal-deep);
+}
+
+.gaso-ajustes-desc{
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.45;
+  color: var(--ink-soft);
+}
+
+.gaso-condutas{
+  margin:6px 0 0 18px;
+  font-size:12px;
+  line-height:1.45;
+  color: var(--ink-soft);
+}
+
+.gaso-condutas li + li{
+  margin-top:4px;
+}
+
+.gaso-conduta-motivo{
+  margin-top:2px;
+}
+
+.gaso-print-action{
+  margin-top:10px;
+}
+
+.gaso-print-action .gcs-action-btn{
+  width:100%;
+}
+
+.gaso-print-header{
+  display:none;
+}
+
+@media print{
+  @page{
+    margin: 14mm;
+  }
+
+  body{
+    background:#fff !important;
+    color:#111 !important;
+    font-family:'Inter', sans-serif;
+    padding:0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .frame{
+    width:100%;
+    max-width:none;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+    background:#fff;
+  }
+
+  .status,
+  .topbar,
+  .footer-note,
+  .back-btn,
+  .gasometria-main-header,
+  .gasometria-overview-card,
+  .gasometria-calc-heading,
+  .gasometria-calc-intro,
+  .tab-buttons,
+  .gaso-actions,
+  .gaso-print-action,
+  #gasometria-tab-interpretacao,
+  #gasometria-tab-evidencias,
+  .gasometria-panel-interpretacao,
+  .gasometria-panel-evidencias{
+    display:none !important;
+  }
+
+  .content{
+    padding:0;
+  }
+
+  .page-header{
+    margin-top:0;
+  }
+
+  .page-title{
+    font-size:22px;
+    color:#111;
+  }
+
+  .page-subtitle{
+    color:#333;
+  }
+
+  .page-card,
+  .gaso-field,
+  .gaso-ajustes,
+  .gcs-result-item,
+  .gcs-severity{
+    background:#fff !important;
+    color:#111 !important;
+    border:1px solid #9aa3ad !important;
+    box-shadow:none !important;
+  }
+
+  .gaso-print-header{
+    display:block;
+    margin:10px 0 12px;
+    padding:10px;
+    border:1px solid #9aa3ad;
+    border-radius:8px;
+    background:#fff;
+  }
+
+  .gaso-print-brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+  }
+
+  .gaso-print-brand-mark{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+    background:#fff;
+    border:1.5px solid var(--clay);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .gaso-print-brand-mark svg{
+    width:18px;
+    height:18px;
+    stroke:var(--teal-deep);
+    stroke-width:1.9;
+  }
+
+  .gaso-print-brand-name{
+    font-family:'Outfit', sans-serif;
+    font-size:19px;
+    font-weight:700;
+    color: var(--teal-deep);
+    letter-spacing:-0.2px;
+  }
+
+  .gaso-print-brand-name span{
+    color: var(--clay);
+  }
+
+  .gaso-print-header h3{
+    margin:0 0 8px;
+    font-size:15px;
+    color:#111;
+  }
+
+  .gaso-print-header p{
+    margin:2px 0;
+    font-size:12px;
+    color:#222;
+  }
+
+  .gaso-form{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:8px;
+  }
+
+  .gcs-result-item{
+    padding:8px;
+  }
+
+  .gcs-result-item span{
+    color:#333 !important;
+  }
+
+  .gcs-result-item strong{
+    font-size:18px;
+    color:#111 !important;
+  }
+
+  .gaso-condutas li.is-urgente,
+  .gaso-condutas li.is-urgente::marker{
+    color:#8F1F1F !important;
+  }
+}
+
+.gaso-condutas li.is-urgente{
+  color:#8F1F1F;
+  font-weight:700;
+}
+
+.gaso-condutas li.is-urgente::marker{
+  color:#8F1F1F;
+}
+
 #tab-calculadora:checked ~ .tab-buttons label[for="tab-calculadora"],
 #tab-interpretacao:checked ~ .tab-buttons label[for="tab-interpretacao"],
 #tab-evidencias:checked ~ .tab-buttons label[for="tab-evidencias"],
 #rass-tab-calculadora:checked ~ .tab-buttons label[for="rass-tab-calculadora"],
 #rass-tab-interpretacao:checked ~ .tab-buttons label[for="rass-tab-interpretacao"],
-#rass-tab-evidencias:checked ~ .tab-buttons label[for="rass-tab-evidencias"]{
+#rass-tab-evidencias:checked ~ .tab-buttons label[for="rass-tab-evidencias"],
+#gasometria-tab-calculadora:checked ~ .tab-buttons label[for="gasometria-tab-calculadora"],
+#gasometria-tab-interpretacao:checked ~ .tab-buttons label[for="gasometria-tab-interpretacao"],
+#gasometria-tab-evidencias:checked ~ .tab-buttons label[for="gasometria-tab-evidencias"]{
   background: var(--teal);
   border-color: var(--teal);
   color:#fff;
@@ -550,7 +873,10 @@ body{
 #tab-evidencias:checked ~ .tab-content .panel-evidencias,
 #rass-tab-calculadora:checked ~ .tab-content .rass-panel-calculadora,
 #rass-tab-interpretacao:checked ~ .tab-content .rass-panel-interpretacao,
-#rass-tab-evidencias:checked ~ .tab-content .rass-panel-evidencias{
+#rass-tab-evidencias:checked ~ .tab-content .rass-panel-evidencias,
+#gasometria-tab-calculadora:checked ~ .tab-content .gasometria-panel-calculadora,
+#gasometria-tab-interpretacao:checked ~ .tab-content .gasometria-panel-interpretacao,
+#gasometria-tab-evidencias:checked ~ .tab-content .gasometria-panel-evidencias{
   display:block;
 }
 

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Gasometria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header gasometria-main-header"><a class="back-btn" href="fisioterapia-itensiva.html" aria-label="Voltar para Fisioterapia Itensiva"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Gasometria</h1><p class="page-subtitle">Avaliacao de ventilacao, oxigenacao e equilibrio acidobasico no paciente critico.</p></div></div>
+
+    <section class="page-card gasometria-overview-card"><h2>Visao geral</h2><p>A leitura sistematizada da gasometria arterial apoia decisoes clinicas em fisioterapia intensiva e ajuste de suporte respiratorio.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="gasometria-tabs" id="gasometria-tab-calculadora" checked>
+        <input type="radio" name="gasometria-tabs" id="gasometria-tab-interpretacao">
+        <input type="radio" name="gasometria-tabs" id="gasometria-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Gasometria">
+          <label class="tab-btn" for="gasometria-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="gasometria-tab-interpretacao" role="tab">Interpretacao</label>
+          <label class="tab-btn" for="gasometria-tab-evidencias" role="tab">Evidencias</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel gasometria-panel-calculadora">
+            <h2 class="gasometria-calc-heading">Calculadora</h2>
+            <p class="gasometria-calc-intro">Informe os valores do paciente e clique em Calcular para gerar o resultado clinico.</p>
+
+            <div class="gaso-print-header" aria-hidden="true">
+              <div class="gaso-print-brand" aria-label="FisioElite">
+                <div class="gaso-print-brand-mark">
+                  <svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg>
+                </div>
+                <div class="gaso-print-brand-name">Fisio<span>Elite</span></div>
+              </div>
+              <h3>Relatorio Clinico - Gasometria Arterial</h3>
+              <p><strong>Paciente:</strong> <span id="gasometria-print-paciente">--</span></p>
+              <p><strong>Idade:</strong> <span id="gasometria-print-idade">--</span></p>
+              <p><strong>Data/Hora:</strong> <span id="gasometria-print-data">--</span></p>
+            </div>
+
+            <form class="gcs-form gaso-form" id="gasometria-form">
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-paciente">Nome do Paciente</label>
+                  <input id="gasometria-paciente" name="paciente" type="text" autocomplete="name" placeholder="Digite o nome">
+                </div>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-idade">Idade</label>
+                  <input id="gasometria-idade" name="idade" type="number" inputmode="numeric" min="0" max="130" placeholder="Ex: 65">
+                </div>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-ph">pH</label>
+                  <input id="gasometria-ph" name="ph" type="text" inputmode="decimal" value="7.40">
+                </div>
+                <p class="gaso-ref">Ref: 7.35 a 7.45</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-paco2">PaCO2 (mmHg)</label>
+                  <input id="gasometria-paco2" name="paco2" type="text" inputmode="decimal" value="40">
+                </div>
+                <p class="gaso-ref">Ref: 35 a 45 mmHg</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-hco3">HCO3- (mEq/L)</label>
+                  <input id="gasometria-hco3" name="hco3" type="text" inputmode="decimal" value="24">
+                </div>
+                <p class="gaso-ref">Ref: 22 a 26 mEq/L</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-pao2">PaO2 (mmHg)</label>
+                  <input id="gasometria-pao2" name="pao2" type="text" inputmode="decimal" value="95">
+                </div>
+                <p class="gaso-ref">Ref: 80 a 100 mmHg</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-sao2">SaO2 (%)</label>
+                  <input id="gasometria-sao2" name="sao2" type="text" inputmode="decimal" value="97">
+                </div>
+                <p class="gaso-ref">Ref: 95% a 100%</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-fio2">FiO2 (%)</label>
+                  <input id="gasometria-fio2" name="fio2" type="text" inputmode="decimal" value="21">
+                </div>
+                <p class="gaso-ref">Ref: 21%</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-lactato">Lactato (mmol/L)</label>
+                  <input id="gasometria-lactato" name="lactato" type="text" inputmode="decimal" value="1.2">
+                </div>
+                <p class="gaso-ref">Ref: 0.5 a 2.0 mmol/L</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-be">Base Excess - BE (mEq/L)</label>
+                  <input id="gasometria-be" name="be" type="text" inputmode="decimal" value="0">
+                </div>
+                <p class="gaso-ref">Ref: -2 a +2 mEq/L</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-na">Sodio (Na+) (mEq/L)</label>
+                  <input id="gasometria-na" name="na" type="text" inputmode="decimal" value="140">
+                </div>
+                <p class="gaso-ref">Ref: 135 a 145 mEq/L</p>
+              </div>
+
+              <div class="gaso-item">
+                <div class="gaso-field">
+                  <label for="gasometria-cl">Cloro (Cl-) (mEq/L)</label>
+                  <input id="gasometria-cl" name="cl" type="text" inputmode="decimal" value="104">
+                </div>
+                <p class="gaso-ref">Ref: 98 a 106 mEq/L</p>
+              </div>
+
+              <div class="gcs-actions gaso-actions">
+                <button type="button" class="gcs-action-btn" id="gasometria-calcular">Calcular</button>
+                <button type="button" class="gcs-action-btn is-secondary" id="gasometria-resetar">Resetar</button>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Estado do pH</span>
+                <strong id="gasometria-ph-status">Faixa normal</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Disturbio</span>
+                <strong id="gasometria-disturbio">Aguardando</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>PaO2/FiO2</span>
+                <strong id="gasometria-pf">--</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Oxigenacao</span>
+                <strong id="gasometria-oxigenacao">Aguardando</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Base Excess</span>
+                <strong id="gasometria-be-status">Aguardando</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Anion Gap</span>
+                <strong id="gasometria-ag">--</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="gasometria-severity">Resultado Clinico</p>
+            <p class="gcs-severity-desc" id="gasometria-severity-desc">Preencha os campos e clique em Calcular.</p>
+            <div class="gaso-ajustes" aria-live="polite">
+              <p class="gaso-ajustes-title">Condutas recomendadas para ventilacao mecanica.</p>
+              <ul class="gaso-condutas" id="gasometria-ajustes">
+                <li>Preencha os campos para visualizar condutas.</li>
+              </ul>
+            </div>
+            <div class="gaso-print-action">
+              <button type="button" class="gcs-action-btn" id="gasometria-imprimir">Imprimir</button>
+            </div>
+          </div>
+
+          <div class="tab-panel gasometria-panel-interpretacao">
+            <h2>Interpretacao</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINICAO</summary>
+              <p>A gasometria arterial integra pH, PaCO2, HCO3- e PaO2 para analise do equilibrio acidobasico, ventilacao e oxigenacao.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Registrar os valores obtidos na coleta arterial e comparar com o contexto clinico, parametros ventilatorios e evolucao nas reavaliacoes.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Ajuda a reconhecer rapidamente disturbios respiratorios e metabolicos, orientando ajustes em oxigenioterapia e suporte ventilatorio.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Interpretar resultados em serie para avaliar tendencia e resposta a conduta.</li>
+                <li>Correlacionar relacao PaO2/FiO2 com gravidade de hipoxemia.</li>
+                <li>Associar sempre com exame clinico e objetivo terapeutico do paciente.</li>
+              </ul>
+            </details>
+            <p>A conduta deve considerar tambem hemodinamica, perfusao tecidual e condicoes de ventilacao no momento da coleta.</p>
+          </div>
+
+          <div class="tab-panel gasometria-panel-evidencias">
+            <h2>Evidencias</h2>
+            <p>A gasometria arterial e base para monitoramento de insuficiencia respiratoria e equilibrio acidobasico em terapia intensiva.</p>
+            <ul class="gcs-list">
+              <li><strong>ARDS Definition Task Force. (2012)</strong> Acute respiratory distress syndrome: The Berlin Definition. <em>JAMA</em>, 307(23), 2526-2533.</li>
+              <li><strong>Adrogue HJ, Madias NE. (1998)</strong> Management of life-threatening acid-base disorders. <em>New England Journal of Medicine</em>, 338(1), 26-34.</li>
+              <li><strong>Kraut JA, Madias NE. (2010)</strong> Metabolic acidosis: pathophysiology, diagnosis and management. <em>Nature Reviews Nephrology</em>, 6(5), 274-285.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e suporte clinico</p>
+  </div></div>
+  <script src="../app.js"></script>
+</body>
+</html>
