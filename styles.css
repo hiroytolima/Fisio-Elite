@@ -57,8 +57,8 @@ body{
 }
 
 .brand-mark{
-  width:26px;
-  height:26px;
+  width:30px;
+  height:30px;
   border-radius:8px;
   background: linear-gradient(135deg, var(--clay), var(--clay-soft));
   display:flex;
@@ -66,12 +66,12 @@ body{
   justify-content:center;
 }
 
-.brand-mark svg{width:15px;height:15px;stroke:#fff;}
+.brand-mark svg{width:17px;height:17px;stroke:#fff;}
 
 .brand-name{
   font-family:'Outfit', sans-serif;
   font-weight:700;
-  font-size:15px;
+  font-size:18px;
   color: var(--teal-deep);
   letter-spacing:-0.3px;
 }
