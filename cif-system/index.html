@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIF - Classificação Internacional de Funcionalidade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>CIF <span>Classificação Internacional de Funcionalidade</span></h1>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar por código ou nome...">
+                <button onclick="buscarCIF()"><i class="fas fa-search"></i></button>
+                <button onclick="limparBusca()" class="btn-clear" title="Limpar busca"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container">
+        <!-- Componentes Tabs -->
+        <div class="tabs" id="tabsContainer">
+            <button class="tab-btn active" data-componente="b" onclick="carregarComponente('b', this)">
+                <i class="fas fa-brain"></i> Funções do Corpo
+                <span class="badge">8</span>
+            </button>
+            <button class="tab-btn" data-componente="s" onclick="carregarComponente('s', this)">
+                <i class="fas fa-bone"></i> Estruturas do Corpo
+                <span class="badge">8</span>
+            </button>
+            <button class="tab-btn" data-componente="d" onclick="carregarComponente('d', this)">
+                <i class="fas fa-running"></i> Atividades & Participação
+                <span class="badge">9</span>
+            </button>
+            <button class="tab-btn" data-componente="e" onclick="carregarComponente('e', this)">
+                <i class="fas fa-globe-americas"></i> Fatores Ambientais
+                <span class="badge">5</span>
+            </button>
+        </div>
+
+        <!-- Informações do componente -->
+        <div class="component-info" id="componentInfo">
+            <span id="componenteNome">Funções do Corpo</span>
+            <span id="totalItens">0 itens</span>
+        </div>
+
+        <!-- Tree Content -->
+        <div class="content" id="content">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando dados...</p>
+            </div>
+        </div>
+
+        <!-- Footer com estatísticas -->
+        <div class="stats-footer" id="statsFooter">
+            <div class="stat-item">
+                <i class="fas fa-database"></i>
+                <span id="totalRegistros">0</span> registros carregados
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-tree"></i>
+                <span id="totalNiveis">0</span> níveis hierárquicos
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <span id="ultimaAtualizacao">Carregado</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para detalhes -->
+    <div class="modal" id="detalhesModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="fecharModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
