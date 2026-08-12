@@ -353,6 +353,10 @@ body{
   filter: brightness(1.06);
 }
 
+.page-link-card + .page-link-card{
+  margin-top:8px;
+}
+
 .tabs input{
   position:absolute;
   opacity:0;
@@ -523,9 +527,19 @@ body{
   color:#1F6B36;
 }
 
+.rass-severity-desc{
+  margin-top:8px;
+  font-size:12px;
+  line-height:1.45;
+  color: var(--ink-soft);
+}
+
 #tab-calculadora:checked ~ .tab-buttons label[for="tab-calculadora"],
 #tab-interpretacao:checked ~ .tab-buttons label[for="tab-interpretacao"],
-#tab-evidencias:checked ~ .tab-buttons label[for="tab-evidencias"]{
+#tab-evidencias:checked ~ .tab-buttons label[for="tab-evidencias"],
+#rass-tab-calculadora:checked ~ .tab-buttons label[for="rass-tab-calculadora"],
+#rass-tab-interpretacao:checked ~ .tab-buttons label[for="rass-tab-interpretacao"],
+#rass-tab-evidencias:checked ~ .tab-buttons label[for="rass-tab-evidencias"]{
   background: var(--teal);
   border-color: var(--teal);
   color:#fff;
@@ -533,7 +547,10 @@ body{
 
 #tab-calculadora:checked ~ .tab-content .panel-calculadora,
 #tab-interpretacao:checked ~ .tab-content .panel-interpretacao,
-#tab-evidencias:checked ~ .tab-content .panel-evidencias{
+#tab-evidencias:checked ~ .tab-content .panel-evidencias,
+#rass-tab-calculadora:checked ~ .tab-content .rass-panel-calculadora,
+#rass-tab-interpretacao:checked ~ .tab-content .rass-panel-interpretacao,
+#rass-tab-evidencias:checked ~ .tab-content .rass-panel-evidencias{
   display:block;
 }
 

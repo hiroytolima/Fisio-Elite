@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala de RASS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala de RASS</h1><p class="page-subtitle">Avaliacao do nivel de agitacao e sedacao em pacientes criticos.</p></div></div>
+
+    <section class="page-card"><h2>Visao geral</h2><p>A RASS (Richmond Agitation-Sedation Scale) varia de +4 a -5 e ajuda a padronizar o acompanhamento neurologico e de sedacao.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="rass-tabs" id="rass-tab-calculadora" checked>
+        <input type="radio" name="rass-tabs" id="rass-tab-interpretacao">
+        <input type="radio" name="rass-tabs" id="rass-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala de RASS">
+          <label class="tab-btn" for="rass-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="rass-tab-interpretacao" role="tab">Interpretacao</label>
+          <label class="tab-btn" for="rass-tab-evidencias" role="tab">Evidencias</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel rass-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Selecione o valor observado da RASS para classificar o estado clinico.</p>
+
+            <form class="gcs-form" id="rass-form">
+              <label for="rass-score">Pontuacao RASS</label>
+              <select id="rass-score" name="rass-score">
+                <option value="4">+4 - Combativo</option>
+                <option value="3">+3 - Muito agitado</option>
+                <option value="2">+2 - Agitado</option>
+                <option value="1">+1 - Inquieto</option>
+                <option value="0" selected>0 - Alerta e calmo</option>
+                <option value="-1">-1 - Sonolento</option>
+                <option value="-2">-2 - Sedacao leve</option>
+                <option value="-3">-3 - Sedacao moderada</option>
+                <option value="-4">-4 - Sedacao profunda</option>
+                <option value="-5">-5 - Nao despertavel</option>
+              </select>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>RASS</span>
+                <strong id="rass-total">0</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="rass-severity">Nivel alvo: alerta e calmo</p>
+            <p class="rass-severity-desc" id="rass-severity-desc">Paciente em estado ideal de sedacao para monitorizacao e manejo clinico.</p>
+          </div>
+
+          <div class="tab-panel rass-panel-interpretacao">
+            <h2>Interpretacao</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINICAO</summary>
+              <p>A RASS quantifica agitacao e sedacao em escala ordinal de +4 (combativo) a -5 (nao despertavel).</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETACAO</summary>
+              <ul class="gcs-list">
+                <li><strong>+1 a +4:</strong> Agitacao</li>
+                <li><strong>0:</strong> Alerta e calmo</li>
+                <li><strong>-1 a -5:</strong> Sedacao</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Observe o paciente em repouso e durante estimulos verbais ou fisicos, identificando a resposta que melhor representa o nivel de agitacao ou sedacao naquele momento.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Porque a RASS padroniza a avaliacao do estado de consciencia, facilita a comunicacao entre a equipe e ajuda a ajustar metas de sedacao com mais seguranca.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Aplicar a escala de forma seriada para acompanhar tendencia clinica.</li>
+                <li>Registrar o valor obtido junto ao contexto de analgesia, sedacao e suporte ventilatorio.</li>
+                <li>Interpretar o resultado considerando o objetivo terapeutico definido para o paciente.</li>
+              </ul>
+            </details>
+            <p>Interprete junto ao contexto clinico, uso de sedativos e objetivo terapeutico.</p>
+          </div>
+
+          <div class="tab-panel rass-panel-evidencias">
+            <h2>Evidencias</h2>
+            <ul class="gcs-list">
+              <li><strong>Sesler CN, et al. (2002)</strong> The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. <em>American Journal of Respiratory and Critical Care Medicine</em>, 166(10), 1338-1344.</li>
+              <li><strong>Ely EW, et al. (2003)</strong> Monitoring sedation status over time in ICU patients: reliability and validity of the RASS. <em>JAMA</em>, 289(22), 2983-2991.</li>
+            </ul>
+            <p>A escala e recomendada para monitorar meta de sedacao e reduzir variabilidade entre avaliadores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clinicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

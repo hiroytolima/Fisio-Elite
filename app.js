@@ -145,6 +145,82 @@
     updateScore();
   }
 
+  function initRassCalculator() {
+    var form = document.getElementById("rass-form");
+    if (!form) {
+      return;
+    }
+
+    var scoreSelect = document.getElementById("rass-score");
+    var totalEl = document.getElementById("rass-total");
+    var severityEl = document.getElementById("rass-severity");
+    var severityDescEl = document.getElementById("rass-severity-desc");
+
+    if (!scoreSelect || !totalEl || !severityEl || !severityDescEl) {
+      return;
+    }
+
+    function updateRass() {
+      var score = parseInt(scoreSelect.value, 10);
+
+      totalEl.textContent = score > 0 ? "+" + String(score) : String(score);
+      severityEl.classList.remove("is-grave", "is-moderado", "is-leve");
+
+      if (score === 4) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Agitacao: Combativo, violento, com perigo imediato para a equipe.";
+        severityDescEl.textContent = "Paciente com aumento de atividade psicomotora, podendo exigir contencao verbal, ajuste de analgesia ou sedacao.";
+      } else if (score === 3) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Agitacao: Conduta agressiva, puxa ou remove dispositivos, agressivo verbalmente.";
+        severityDescEl.textContent = "Paciente com aumento de atividade psicomotora, podendo exigir contencao verbal, ajuste de analgesia ou sedacao.";
+      } else if (score === 2) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Agitacao: Movimentos despropositados frequentes, briga com o ventilador.";
+        severityDescEl.textContent = "Paciente com aumento de atividade psicomotora, podendo exigir contencao verbal, ajuste de analgesia ou sedacao.";
+      } else if (score === 1) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Agitacao: Intranquilo, ansioso, sem movimentos vigorosos ou agressivos.";
+        severityDescEl.textContent = "Paciente com aumento de atividade psicomotora, podendo exigir contencao verbal, ajuste de analgesia ou sedacao.";
+      } else if (score >= 1) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Agitacao";
+        severityDescEl.textContent = "Paciente com aumento de atividade psicomotora, podendo exigir contencao verbal, ajuste de analgesia ou sedacao.";
+      } else if (score === 0) {
+        severityEl.classList.add("is-leve");
+        severityEl.textContent = "Nivel alvo: alerta e calmo";
+        severityDescEl.textContent = "Paciente em estado ideal de sedacao para monitorizacao e manejo clinico.";
+      } else if (score === -1) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao: Adormecido, facilmente despertavel, mantem contato visual por mais de 10 segundos";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      } else if (score === -2) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao: Despertar precoce ao estimulo verbal, mantem contato visual por menos de 10 segundos";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      } else if (score === -3) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao: Movimentos e abertura ocular ao estimulo verbal, mas sem contato visual.";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      } else if (score === -4) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao: Sem resposta ao estimulo verbal, mas apresenta movimentos ou abertura ocular ao estimulo fisico.";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      } else if (score === -5) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao: Sem resposta ao estimulo verbal ou fisico.";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      } else {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Sedacao";
+        severityDescEl.textContent = "Paciente com reducao de responsividade, exigindo reavaliacao frequente e ajuste cuidadoso da sedacao.";
+      }
+    }
+
+    form.addEventListener("change", updateRass);
+    updateRass();
+  }
+
   function navigate(pathname, isPopState) {
     var path = normalizePath(pathname);
     var current = normalizePath(window.location.pathname);
@@ -171,6 +247,7 @@
         bindLinks();
         setActiveMenuByPath(path);
         initGlasgowCalculator();
+        initRassCalculator();
         window.scrollTo({ top: 0, behavior: "instant" });
       })
       .catch(function () {
@@ -186,4 +263,5 @@
   bindLinks();
   setActiveMenuByPath(window.location.pathname);
   initGlasgowCalculator();
+  initRassCalculator();
 })();
