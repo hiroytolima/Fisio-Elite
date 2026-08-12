@@ -110,8 +110,9 @@
     var totalEl = document.getElementById("gcs-total");
     var totalPEl = document.getElementById("gcs-p-total");
     var severityEl = document.getElementById("gcs-severity");
+    var severityDescEl = document.getElementById("gcs-severity-desc");
 
-    if (!ocular || !verbal || !motora || !pupilar || !totalEl || !totalPEl || !severityEl) {
+    if (!ocular || !verbal || !motora || !pupilar || !totalEl || !totalPEl || !severityEl || !severityDescEl) {
       return;
     }
 
@@ -132,12 +133,15 @@
       if (gcsp <= 8) {
         severityEl.classList.add("is-grave");
         severityEl.textContent = "Nivel grave do trauma (coma)";
+        severityDescEl.textContent = "Paciente com comprometimento neurologico grave, exige monitorizacao intensiva e intervencao imediata.";
       } else if (gcsp <= 12) {
         severityEl.classList.add("is-moderado");
         severityEl.textContent = "Nivel moderado do trauma";
+        severityDescEl.textContent = "Paciente com comprometimento neurologico moderado, requer vigilância clinica estreita e reavaliacoes frequentes.";
       } else {
         severityEl.classList.add("is-leve");
         severityEl.textContent = "Nivel leve do trauma";
+        severityDescEl.textContent = "Paciente com comprometimento neurologico leve, manter observacao clinica e reavaliacoes seriadas.";
       }
     }
 
