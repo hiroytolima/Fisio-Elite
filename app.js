@@ -129,10 +129,10 @@
 
       severityEl.classList.remove("is-grave", "is-moderado", "is-leve");
 
-      if (gcs <= 8) {
+      if (gcsp <= 8) {
         severityEl.classList.add("is-grave");
         severityEl.textContent = "Nivel grave do trauma (coma)";
-      } else if (gcs <= 12) {
+      } else if (gcsp <= 12) {
         severityEl.classList.add("is-moderado");
         severityEl.textContent = "Nivel moderado do trauma";
       } else {

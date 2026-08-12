@@ -463,6 +463,42 @@ body{
   color: var(--ink-soft);
 }
 
+.gcs-disclosure{
+  margin: 2px 0 10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#FAF8F3;
+  padding:8px 10px;
+}
+
+.gcs-disclosure summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:12px;
+  font-weight:700;
+  color: var(--teal-deep);
+}
+
+.gcs-disclosure summary::-webkit-details-marker{
+  display:none;
+}
+
+.gcs-disclosure summary::after{
+  content:"+";
+  color: var(--ink-soft);
+}
+
+.gcs-disclosure[open] summary::after{
+  content:"-";
+}
+
+.gcs-disclosure p{
+  margin-top:8px;
+}
+
 .gcs-severity{
   margin-top:10px;
   border-radius:10px;
