@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala de Glasgow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala de Glasgow</h1><p class="page-subtitle">Avaliacao neurologica padronizada para nivel de consciencia.</p></div></div>
+
+    <section class="page-card"><h2>Visao geral</h2><p>A Escala de Glasgow considera abertura ocular, resposta verbal e resposta motora para composicao do escore total.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="glasgow-tabs" id="tab-calculadora" checked>
+        <input type="radio" name="glasgow-tabs" id="tab-interpretacao">
+        <input type="radio" name="glasgow-tabs" id="tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala de Glasgow">
+          <label class="tab-btn" for="tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="tab-interpretacao" role="tab">Interpretacao</label>
+          <label class="tab-btn" for="tab-evidencias" role="tab">Evidencias</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel panel-calculadora">
+            <h2>Calculadora</h2>
+            <p>Selecione as melhores respostas para obter o escore automaticamente.</p>
+
+            <form class="gcs-form" id="gcs-form">
+              <label for="gcs-ocular">Melhor resposta ocular</label>
+              <select id="gcs-ocular" name="ocular">
+                <option value="4">4 - Espontanea</option>
+                <option value="3">3 - Ao comando verbal</option>
+                <option value="2">2 - A dor</option>
+                <option value="1">1 - Ausente</option>
+              </select>
+
+              <label for="gcs-verbal">Melhor resposta verbal</label>
+              <select id="gcs-verbal" name="verbal">
+                <option value="5">5 - Orientado</option>
+                <option value="4">4 - Confuso</option>
+                <option value="3">3 - Palavras inapropriadas</option>
+                <option value="2">2 - Sons incompreensiveis</option>
+                <option value="1">1 - Ausente</option>
+              </select>
+
+              <label for="gcs-motora">Melhor resposta motora</label>
+              <select id="gcs-motora" name="motora">
+                <option value="6">6 - Obedece comandos</option>
+                <option value="5">5 - Localiza dor</option>
+                <option value="4">4 - Retirada a dor</option>
+                <option value="3">3 - Flexao anormal</option>
+                <option value="2">2 - Extensao anormal</option>
+                <option value="1">1 - Ausente</option>
+              </select>
+
+              <label for="gcs-pupilar">Resposta pupilar</label>
+              <select id="gcs-pupilar" name="pupilar">
+                <option value="0">0 - Ambas reativas</option>
+                <option value="1">1 - Uma pupila nao reativa</option>
+                <option value="2">2 - Duas pupilas nao reativas</option>
+              </select>
+            </form>
+
+            <div class="gcs-result" id="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>GCS</span>
+                <strong id="gcs-total">15</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>GCS-P</span>
+                <strong id="gcs-p-total">15</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="gcs-severity">Nivel leve do trauma</p>
+
+            <p class="gcs-footnote"><strong>Formula:</strong> GCS = Ocular + Verbal + Motora | GCS-P = GCS - Pupilar</p>
+          </div>
+
+          <div class="tab-panel panel-interpretacao">
+            <h2>Interpretacao</h2>
+            <ul class="gcs-list">
+              <li><strong>13 a 15:</strong> TCE leve</li>
+              <li><strong>9 a 12:</strong> TCE moderado</li>
+              <li><strong>3 a 8:</strong> TCE grave</li>
+            </ul>
+            <p>O escore deve sempre ser interpretado junto ao exame clinico e ao contexto do paciente.</p>
+          </div>
+
+          <div class="tab-panel panel-evidencias">
+            <h2>Evidencias</h2>
+            <p>A escala e amplamente usada por sua simplicidade, boa reprodutibilidade e valor prognostico em trauma cranioencefalico.</p>
+            <p>Boas praticas: registrar o escore total e tambem os componentes separados (ocular, verbal e motora).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clinicos</p>
+  </div></div>
+  <script src="../app.js"></script>
+</body>
+</html>
