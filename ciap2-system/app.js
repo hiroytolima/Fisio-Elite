@@ -115,11 +115,11 @@ function renderizarCapitulo(codigo) {
 
         for (const rubrica of rubricas) {
             html += `
-                <div class="rubrica-item" onclick="mostrarDetalhes('${codigo}', '${rubrica.codigo}')">
+                <div class="rubrica-item" onclick="mostrarDetalhesCIAP2('${codigo}', '${rubrica.codigo}')">
                     <span class="rubrica-codigo">${rubrica.codigo}</span>
                     <span class="rubrica-nome">${rubrica.nome}</span>
                     <button class="btn-detalhes" title="Ver detalhes">
-                        <i class="fas fa-info-circle"></i>
+                        i
                     </button>
                 </div>
             `;
@@ -133,7 +133,7 @@ function renderizarCapitulo(codigo) {
 }
 
 // ===== MOSTRAR DETALHES (MODAL) =====
-function mostrarDetalhes(capCodigo, rubCodigo) {
+function mostrarDetalhesCIAP2(capCodigo, rubCodigo) {
     const dados = getCapituloData(capCodigo);
     if (!dados) return;
 
@@ -181,17 +181,23 @@ function mostrarDetalhes(capCodigo, rubCodigo) {
 }
 
 // ===== FECHAR MODAL =====
-function fecharModal() {
-    document.getElementById('detalhesModal').style.display = 'none';
+function fecharModalCIAP2() {
+    const modal = document.getElementById('detalhesModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
 
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') fecharModal();
+    if (e.key === 'Escape') fecharModalCIAP2();
 });
 
-document.getElementById('detalhesModal').addEventListener('click', function(e) {
-    if (e.target === this) fecharModal();
-});
+const ciap2Modal = document.getElementById('detalhesModal');
+if (ciap2Modal) {
+    ciap2Modal.addEventListener('click', function(e) {
+        if (e.target === this) fecharModalCIAP2();
+    });
+}
 
 // ===== BUSCAR =====
 function buscarCIAP2() {
@@ -249,14 +255,14 @@ function buscarCIAP2() {
         itens.forEach(r => {
             const cor = CORES_COMPONENTES[r.componente] || '#95a5a6';
             html += `
-                <div class="rubrica-item" onclick="mostrarDetalhes('${r.capitulo}', '${r.codigo}')">
+                <div class="rubrica-item" onclick="mostrarDetalhesCIAP2('${r.capitulo}', '${r.codigo}')">
                     <span class="rubrica-codigo">${r.codigo}</span>
                     <span class="rubrica-nome">${r.nome}</span>
                     <span class="rubrica-comp" style="background:${cor}20; color:${cor}; font-size: 10px; padding: 2px 8px; border-radius: 10px;">
                         ${r.componente}
                     </span>
                     <button class="btn-detalhes" title="Ver detalhes">
-                        <i class="fas fa-info-circle"></i>
+                        i
                     </button>
                 </div>
             `;
@@ -272,7 +278,7 @@ function buscarCIAP2() {
 }
 
 // ===== LIMPAR BUSCA =====
-function limparBusca() {
+function limparBuscaCIAP2() {
     document.getElementById('searchInput').value = '';
     carregarCapitulo(capituloAtual, document.querySelector('.tab-btn.active'));
 }
@@ -289,9 +295,17 @@ function atualizarStats(codigo) {
 }
 
 // ===== INICIALIZAR =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Atualizar total de capítulos
+function inicializarCIAP2() {
+    if (window.__ciap2Initialized) {
+        return;
+    }
+    window.__ciap2Initialized = true;
     document.getElementById('totalCapitulos').textContent = Object.keys(CIAP2_DADOS).length;
-    // Carregar primeiro capítulo
     carregarCapitulo('A', document.querySelector('.tab-btn'));
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inicializarCIAP2);
+} else {
+    inicializarCIAP2();
+}

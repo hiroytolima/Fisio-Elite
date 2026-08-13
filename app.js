@@ -552,6 +552,35 @@
       });
   }
 
+  function initCiap2Page() {
+    if (!document.querySelector(".ciap2-shell")) {
+      return;
+    }
+
+    var initialize = function () {
+      if (typeof window.carregarCapitulo === "function") {
+        var activeTab = document.querySelector(".tab-btn.active") || document.querySelector(".tab-btn");
+        window.carregarCapitulo("A", activeTab || null);
+      }
+    };
+
+    if (typeof window.carregarCapitulo === "function") {
+      initialize();
+      return;
+    }
+
+    loadScriptOnce("../ciap2-system/data.js")
+      .then(function () {
+        return loadScriptOnce("../ciap2-system/app.js");
+      })
+      .then(function () {
+        initialize();
+      })
+      .catch(function () {
+        // Keep page usable even if CIAP-2 scripts fail to load.
+      });
+  }
+
   function navigate(pathname, isPopState) {
     var path = normalizePath(pathname);
     var current = normalizePath(window.location.pathname);
@@ -581,6 +610,7 @@
         initRassCalculator();
         initGasometriaCalculator();
         initCifPage();
+        initCiap2Page();
         window.scrollTo({ top: 0, behavior: "instant" });
       })
       .catch(function () {
@@ -599,4 +629,5 @@
   initRassCalculator();
   initGasometriaCalculator();
   initCifPage();
+  initCiap2Page();
 })();

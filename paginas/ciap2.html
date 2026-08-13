@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisio Elite | CIAP-2 (Classificação Internacional de Atenção Primária)</title>    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="frame"><div class="status"></div><div class="content">
+        <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+        <div class="page-header"><a class="back-btn" href="protocolos.html" aria-label="Voltar para protocolos"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">CIAP-2</h1><p class="page-subtitle">Classificação Internacional de Atenção Primária.</p></div></div>
+
+        <section class="ciap2-shell">
+            <div class="ciap2-search">
+                <input type="text" id="searchInput" placeholder="Buscar por código ou nome..." onkeypress="if(event.key==='Enter') buscarCIAP2()">
+                <button onclick="buscarCIAP2()" aria-label="Buscar">Buscar</button>
+                <button onclick="limparBuscaCIAP2()" class="btn-clear" title="Limpar busca" aria-label="Limpar">Limpar</button>
+            </div>
+
+            <div class="ciap2-tabs" id="tabsContainer">
+                <button class="tab-btn active" data-capitulo="A" onclick="carregarCapitulo('A', this)">A <span class="badge">99</span></button>
+                <button class="tab-btn" data-capitulo="B" onclick="carregarCapitulo('B', this)">B <span class="badge">29</span></button>
+                <button class="tab-btn" data-capitulo="D" onclick="carregarCapitulo('D', this)">D <span class="badge">60</span></button>
+                <button class="tab-btn" data-capitulo="F" onclick="carregarCapitulo('F', this)">F <span class="badge">30</span></button>
+                <button class="tab-btn" data-capitulo="H" onclick="carregarCapitulo('H', this)">H <span class="badge">26</span></button>
+                <button class="tab-btn" data-capitulo="K" onclick="carregarCapitulo('K', this)">K <span class="badge">46</span></button>
+                <button class="tab-btn" data-capitulo="L" onclick="carregarCapitulo('L', this)">L <span class="badge">55</span></button>
+                <button class="tab-btn" data-capitulo="N" onclick="carregarCapitulo('N', this)">N <span class="badge">38</span></button>
+                <button class="tab-btn" data-capitulo="P" onclick="carregarCapitulo('P', this)">P <span class="badge">54</span></button>
+                <button class="tab-btn" data-capitulo="R" onclick="carregarCapitulo('R', this)">R <span class="badge">44</span></button>
+                <button class="tab-btn" data-capitulo="S" onclick="carregarCapitulo('S', this)">S <span class="badge">43</span></button>
+                <button class="tab-btn" data-capitulo="T" onclick="carregarCapitulo('T', this)">T <span class="badge">35</span></button>
+                <button class="tab-btn" data-capitulo="U" onclick="carregarCapitulo('U', this)">U <span class="badge">35</span></button>
+                <button class="tab-btn" data-capitulo="W" onclick="carregarCapitulo('W', this)">W <span class="badge">42</span></button>
+                <button class="tab-btn" data-capitulo="X" onclick="carregarCapitulo('X', this)">X <span class="badge">45</span></button>
+                <button class="tab-btn" data-capitulo="Y" onclick="carregarCapitulo('Y', this)">Y <span class="badge">37</span></button>
+                <button class="tab-btn" data-capitulo="Z" onclick="carregarCapitulo('Z', this)">Z <span class="badge">38</span></button>
+            </div>
+
+            <div class="ciap2-info" id="componentInfo">
+                <div class="info-left">
+                    <span id="capituloNome">Geral e Inespecífico</span>
+                    <span id="capituloDescricao">Problemas gerais, sintomas inespecíficos e condições sistêmicas</span>
+                </div>
+                <span id="totalItens">99 rubricas</span>
+            </div>
+
+            <div class="ciap2-content" id="content">
+                <div class="loading">
+                    <p>Carregando dados...</p>
+                </div>
+            </div>
+
+            <div class="ciap2-stats" id="statsFooter">
+                <div class="stat-item"><span id="totalRubricas">0</span> rubricas neste capítulo</div>
+                <div class="stat-item"><span id="totalCapitulos">17</span> capítulos</div>
+                <div class="stat-item"><span id="ultimaAtualizacao">Carregado</span></div>
+            </div>
+        </section>
+
+        <p class="footer-note">Fisio Elite - Conteúdo integrado ao bloco de Protocolos</p>
+
+        <div class="modal" id="detalhesModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="fecharModalCIAP2()">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </div></div>
+
+    <script src="../ciap2-system/data.js"></script>
+    <script src="../ciap2-system/app.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
