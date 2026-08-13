@@ -231,13 +231,20 @@
       return;
     }
 
+    var methodSelect = document.getElementById("dp-metodo");
     var pplatInput = document.getElementById("dp-plat");
     var peepInput = document.getElementById("dp-peep");
+    var vtInput = document.getElementById("dp-vt");
+    var cstInput = document.getElementById("dp-cst");
+    var groupPlato = document.getElementById("dp-grupo-plato");
+    var groupVtCst = document.getElementById("dp-grupo-vt-cst");
     var totalEl = document.getElementById("dp-total");
+    var methodLabelEl = document.getElementById("dp-method-label");
+    var formulaEl = document.getElementById("dp-formula");
     var severityEl = document.getElementById("dp-severity");
     var severityDescEl = document.getElementById("dp-severity-desc");
 
-    if (!pplatInput || !peepInput || !totalEl || !severityEl || !severityDescEl) {
+    if (!methodSelect || !pplatInput || !peepInput || !vtInput || !cstInput || !groupPlato || !groupVtCst || !totalEl || !methodLabelEl || !formulaEl || !severityEl || !severityDescEl) {
       return;
     }
 
@@ -248,9 +255,25 @@
     }
 
     function updateDrivingPressure() {
+      var method = methodSelect.value;
       var pplat = readValue(pplatInput);
       var peep = readValue(peepInput);
-      var drivingPressure = Math.max(0, pplat - peep);
+      var vt = readValue(vtInput);
+      var cst = readValue(cstInput);
+      var dpPlatoPeep = Math.max(0, pplat - peep);
+      var dpVtCst = cst > 0 ? Math.max(0, vt / cst) : 0;
+      var drivingPressure = method === "vt-cst" ? dpVtCst : dpPlatoPeep;
+
+      groupPlato.hidden = method !== "plato-peep";
+      groupVtCst.hidden = method !== "vt-cst";
+
+      if (method === "vt-cst") {
+        methodLabelEl.textContent = "Metodo: VT / Cst";
+        formulaEl.innerHTML = "<strong>Formula:</strong> Driving Pressure = VT / Cst";
+      } else {
+        methodLabelEl.textContent = "Metodo: Pplat - PEEP";
+        formulaEl.innerHTML = "<strong>Formula:</strong> Driving Pressure = Pressao de Plato - PEEP total";
+      }
 
       totalEl.textContent = drivingPressure.toFixed(1);
       severityEl.classList.remove("is-grave", "is-moderado", "is-leve");
@@ -268,6 +291,8 @@
         severityEl.textContent = "Alto risco de lesao pulmonar";
         severityDescEl.textContent = "Driving Pressure acima de 18 cmH2O: alto risco de injuria pulmonar associada ao ventilador. Reavaliar ventilacao protetora com prioridade.";
       }
+
+      severityDescEl.textContent += " Metodo alternativo: Pplat-PEEP=" + dpPlatoPeep.toFixed(1) + " | VT/Cst=" + dpVtCst.toFixed(1) + " cmH2O.";
     }
 
     form.addEventListener("input", updateDrivingPressure);

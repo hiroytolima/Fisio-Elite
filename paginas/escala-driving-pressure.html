@@ -30,14 +30,30 @@
         <div class="tab-content">
           <div class="tab-panel dp-panel-calculadora">
             <h2>Instrumento de avaliação clínica.</h2>
-            <p>Informe Pressao de Plato e PEEP para calcular a Driving Pressure automaticamente.</p>
+            <p>Escolha o metodo: Pressao de Plato - PEEP ou VT/Cst para calcular a Driving Pressure.</p>
 
             <form class="gcs-form" id="dp-form">
-              <label for="dp-plat">Pressao de plato (cmH2O)</label>
-              <input id="dp-plat" name="dp-plat" type="number" inputmode="decimal" step="0.1" min="0" value="26">
+              <label for="dp-metodo">Metodo de calculo</label>
+              <select id="dp-metodo" name="dp-metodo">
+                <option value="plato-peep" selected>Pressao de Plato - PEEP</option>
+                <option value="vt-cst">VT / Cst</option>
+              </select>
 
-              <label for="dp-peep">PEEP total (cmH2O)</label>
-              <input id="dp-peep" name="dp-peep" type="number" inputmode="decimal" step="0.1" min="0" value="10">
+              <div id="dp-grupo-plato">
+                <label for="dp-plat">Pressao de plato (cmH2O)</label>
+                <input id="dp-plat" name="dp-plat" type="number" inputmode="decimal" step="0.1" min="0" value="26">
+
+                <label for="dp-peep">PEEP total (cmH2O)</label>
+                <input id="dp-peep" name="dp-peep" type="number" inputmode="decimal" step="0.1" min="0" value="10">
+              </div>
+
+              <div id="dp-grupo-vt-cst" hidden>
+                <label for="dp-vt">Volume corrente VT (mL)</label>
+                <input id="dp-vt" name="dp-vt" type="number" inputmode="decimal" step="1" min="0" value="420">
+
+                <label for="dp-cst">Complacencia estatica Cst (mL/cmH2O)</label>
+                <input id="dp-cst" name="dp-cst" type="number" inputmode="decimal" step="0.1" min="0.1" value="30">
+              </div>
             </form>
 
             <div class="gcs-result" aria-live="polite">
@@ -46,7 +62,7 @@
                 <strong id="dp-total">16</strong>
               </div>
               <div class="gcs-result-item">
-                <span>Unidade</span>
+                <span id="dp-method-label">Metodo: Pplat - PEEP</span>
                 <strong>cmH2O</strong>
               </div>
             </div>
@@ -54,7 +70,7 @@
             <p class="gcs-severity is-moderado" id="dp-severity">Risco intermediario</p>
             <p class="gcs-severity-desc" id="dp-severity-desc">DeltaP entre 15 e 18 cmH2O. Reavaliar estrategia ventilatoria e mecanica pulmonar.</p>
 
-            <p class="gcs-footnote"><strong>Formula:</strong> Driving Pressure = Pressao de Plato - PEEP total</p>
+            <p class="gcs-footnote" id="dp-formula"><strong>Formula:</strong> Driving Pressure = Pressao de Plato - PEEP total</p>
           </div>
 
           <div class="tab-panel dp-panel-interpretacao">
@@ -80,7 +96,7 @@
               <ul class="gcs-list">
                 <li>Interpretar junto com volume corrente, complacencia e hemodinamica.</li>
                 <li>Reavaliar apos ajustes de PEEP, volume corrente e recrutamento.</li>
-                <li>Priorizar estrategia pulmonar protetora em pacientes com SDRA.</li>
+                <li>Priorizar estrategia pulmonar protetora em pacientes com SDRA (abaixo de 16 cmH2O).</li>
               </ul>
             </details>
             <p>A interpretacao deve sempre considerar o contexto clinico e a resposta gasometrica.</p>
