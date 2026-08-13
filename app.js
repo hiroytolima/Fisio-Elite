@@ -503,6 +503,55 @@
     renderDefault();
   }
 
+  function loadScriptOnce(src) {
+    var absoluteSrc = new URL(src, window.location.href).href;
+    var existingScript = document.querySelector('script[src="' + absoluteSrc + '"]');
+    if (existingScript) {
+      return Promise.resolve();
+    }
+
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement("script");
+      script.src = absoluteSrc;
+      script.onload = function () {
+        resolve();
+      };
+      script.onerror = function () {
+        reject(new Error("Failed to load script: " + absoluteSrc));
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  function initCifPage() {
+    if (!document.querySelector(".cif-shell")) {
+      return;
+    }
+
+    var initialize = function () {
+      if (typeof window.carregarComponente === "function") {
+        var activeTab = document.querySelector(".tab-btn.active") || document.querySelector(".tab-btn");
+        window.carregarComponente("b", activeTab || null);
+      }
+    };
+
+    if (typeof window.carregarComponente === "function") {
+      initialize();
+      return;
+    }
+
+    loadScriptOnce("../cif-system/data.js")
+      .then(function () {
+        return loadScriptOnce("../cif-system/app.js");
+      })
+      .then(function () {
+        initialize();
+      })
+      .catch(function () {
+        // Keep page usable even if CIF scripts fail to load.
+      });
+  }
+
   function navigate(pathname, isPopState) {
     var path = normalizePath(pathname);
     var current = normalizePath(window.location.pathname);
@@ -531,6 +580,7 @@
         initGlasgowCalculator();
         initRassCalculator();
         initGasometriaCalculator();
+        initCifPage();
         window.scrollTo({ top: 0, behavior: "instant" });
       })
       .catch(function () {
@@ -548,4 +598,5 @@
   initGlasgowCalculator();
   initRassCalculator();
   initGasometriaCalculator();
+  initCifPage();
 })();

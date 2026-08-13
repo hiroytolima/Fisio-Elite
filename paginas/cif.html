@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisio Elite | CIF (Classificação Internacional de Funcionalidade)</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="frame"><div class="status"></div><div class="content">
+        <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+        <div class="page-header"><a class="back-btn" href="protocolos.html" aria-label="Voltar para protocolos"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">CIF</h1><p class="page-subtitle">Classificação Internacional de Funcionalidade.</p></div></div>
+
+        <section class="cif-shell">
+            <div class="cif-search">
+                <input type="text" id="searchInput" placeholder="Pesquisar por código ou nome...">
+                <button onclick="buscarCIF()" aria-label="Buscar">Buscar</button>
+                <button onclick="limparBusca()" class="btn-clear" title="Limpar busca" aria-label="Limpar">Limpar</button>
+            </div>
+
+            <div class="tabs" id="tabsContainer">
+                <button class="tab-btn active" data-componente="b" onclick="carregarComponente('b', this)">
+                    Funções do Corpo <span class="badge">8</span>
+                </button>
+                <button class="tab-btn" data-componente="s" onclick="carregarComponente('s', this)">
+                    Estruturas do Corpo <span class="badge">8</span>
+                </button>
+                <button class="tab-btn" data-componente="d" onclick="carregarComponente('d', this)">
+                    Atividades e Participação <span class="badge">9</span>
+                </button>
+                <button class="tab-btn" data-componente="e" onclick="carregarComponente('e', this)">
+                    Fatores Ambientais <span class="badge">5</span>
+                </button>
+            </div>
+
+            <div class="component-info" id="componentInfo">
+                <span id="componenteNome">Funções do Corpo</span>
+                <span id="totalItens">0 itens</span>
+            </div>
+
+            <div class="cif-tree-content" id="content">
+                <div class="loading">
+                    <p>Carregando dados...</p>
+                </div>
+            </div>
+
+            <div class="stats-footer" id="statsFooter">
+                <div class="stat-item">
+                    <span id="totalRegistros">0</span> registros carregados
+                </div>
+                <div class="stat-item">
+                    <span id="totalNiveis">0</span> níveis hierárquicos
+                </div>
+                <div class="stat-item">
+                    <span id="ultimaAtualizacao">Carregado</span>
+                </div>
+            </div>
+        </section>
+
+        <p class="footer-note">Fisio Elite - Conteudo integrado ao bloco de Protocolos</p>
+
+        <div class="modal" id="detalhesModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </div></div>
+
+    <script src="../cif-system/data.js"></script>
+    <script src="../cif-system/app.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

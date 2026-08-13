@@ -82,7 +82,7 @@ function renderizarItem(item, nivel, componente, paiCodigo = null) {
             <span class="nome">${item.nome}</span>
             ${item.definicao ? `<span class="definicao">${item.definicao.substring(0, 80)}${item.definicao.length > 80 ? '...' : ''}</span>` : ''}
             <button class="btn-detalhes" onclick="event.stopPropagation(); mostrarDetalhes('${componente}', '${item.codigo}')" title="Ver detalhes">
-                <i class="fas fa-info-circle"></i>
+                i
             </button>
         </div>
     `;
@@ -105,7 +105,7 @@ function renderizarItem(item, nivel, componente, paiCodigo = null) {
                             <span class="nome">${filho.nome}</span>
                             ${filho.definicao ? `<span class="definicao">${filho.definicao.substring(0, 60)}${filho.definicao.length > 60 ? '...' : ''}</span>` : ''}
                             <button class="btn-detalhes" onclick="event.stopPropagation(); mostrarDetalhes('${componente}', '${filho.codigo}')" title="Ver detalhes">
-                                <i class="fas fa-info-circle"></i>
+                                i
                             </button>
                         </div>
                     </li>
@@ -304,7 +304,7 @@ function buscarCIF() {
                             ${item.paiNome ? ` › ${item.paiNome}` : ''}
                         </span>
                         <button class="btn-detalhes" onclick="mostrarDetalhes('${comp}', '${item.codigo}')" title="Ver detalhes">
-                            <i class="fas fa-info-circle"></i>
+                            i
                         </button>
                     </div>
                 </li>
@@ -378,17 +378,31 @@ function colapsarTodos() {
 
 // ===== TE CLA DE ATALHO (Ctrl+Shift+F para buscar) =====
 document.addEventListener('keydown', function(e) {
+    const searchInput = document.getElementById('searchInput');
     if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+        if (!searchInput) return;
         e.preventDefault();
-        document.getElementById('searchInput').focus();
-        document.getElementById('searchInput').select();
+        searchInput.focus();
+        searchInput.select();
     }
     if (e.key === 'Escape') {
-        document.getElementById('searchInput').blur();
+        if (searchInput) {
+            searchInput.blur();
+        }
     }
 });
 
 // ===== INICIALIZAR =====
-document.addEventListener('DOMContentLoaded', function() {
+function inicializarCIF() {
+    if (window.__cifInitialized) {
+        return;
+    }
+    window.__cifInitialized = true;
     carregarComponente('b', document.querySelector('.tab-btn'));
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inicializarCIF);
+} else {
+    inicializarCIF();
+}
