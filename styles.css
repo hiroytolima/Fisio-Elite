@@ -1016,6 +1016,12 @@ body{
   max-height:390px;
   overflow:auto;
   padding:10px;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+.cif-tree-content::-webkit-scrollbar{
+  display:none;
 }
 
 .cif-tree-content .loading,
@@ -1163,6 +1169,12 @@ body{
   border:1px solid var(--line);
   padding:14px;
   position:relative;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+#detalhesModal .modal-content::-webkit-scrollbar{
+  display:none;
 }
 
 #detalhesModal .modal-close{
