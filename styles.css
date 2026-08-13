@@ -875,7 +875,10 @@ body{
 #rass-tab-evidencias:checked ~ .tab-buttons label[for="rass-tab-evidencias"],
 #gasometria-tab-calculadora:checked ~ .tab-buttons label[for="gasometria-tab-calculadora"],
 #gasometria-tab-interpretacao:checked ~ .tab-buttons label[for="gasometria-tab-interpretacao"],
-#gasometria-tab-evidencias:checked ~ .tab-buttons label[for="gasometria-tab-evidencias"]{
+#gasometria-tab-evidencias:checked ~ .tab-buttons label[for="gasometria-tab-evidencias"],
+#dp-tab-calculadora:checked ~ .tab-buttons label[for="dp-tab-calculadora"],
+#dp-tab-interpretacao:checked ~ .tab-buttons label[for="dp-tab-interpretacao"],
+#dp-tab-evidencias:checked ~ .tab-buttons label[for="dp-tab-evidencias"]{
   background: var(--teal);
   border-color: var(--teal);
   color:#fff;
@@ -889,7 +892,10 @@ body{
 #rass-tab-evidencias:checked ~ .tab-content .rass-panel-evidencias,
 #gasometria-tab-calculadora:checked ~ .tab-content .gasometria-panel-calculadora,
 #gasometria-tab-interpretacao:checked ~ .tab-content .gasometria-panel-interpretacao,
-#gasometria-tab-evidencias:checked ~ .tab-content .gasometria-panel-evidencias{
+#gasometria-tab-evidencias:checked ~ .tab-content .gasometria-panel-evidencias,
+#dp-tab-calculadora:checked ~ .tab-content .dp-panel-calculadora,
+#dp-tab-interpretacao:checked ~ .tab-content .dp-panel-interpretacao,
+#dp-tab-evidencias:checked ~ .tab-content .dp-panel-evidencias{
   display:block;
 }
 

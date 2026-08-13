@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala de Driving Pressure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala de Driving Pressure</h1><p class="page-subtitle">Avaliacao da pressao de distensao durante ventilacao mecanica.</p></div></div>
+
+    <section class="page-card"><h2>Visao geral</h2><p>A Driving Pressure (DeltaP) estima o estresse pulmonar e auxilia no ajuste de ventilacao protetora em pacientes ventilados.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="dp-tabs" id="dp-tab-calculadora" checked>
+        <input type="radio" name="dp-tabs" id="dp-tab-interpretacao">
+        <input type="radio" name="dp-tabs" id="dp-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala de Driving Pressure">
+          <label class="tab-btn" for="dp-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="dp-tab-interpretacao" role="tab">Interpretacao</label>
+          <label class="tab-btn" for="dp-tab-evidencias" role="tab">Evidencias</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel dp-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Informe Pressao de Plato e PEEP para calcular a Driving Pressure automaticamente.</p>
+
+            <form class="gcs-form" id="dp-form">
+              <label for="dp-plat">Pressao de plato (cmH2O)</label>
+              <input id="dp-plat" name="dp-plat" type="number" inputmode="decimal" step="0.1" min="0" value="26">
+
+              <label for="dp-peep">PEEP total (cmH2O)</label>
+              <input id="dp-peep" name="dp-peep" type="number" inputmode="decimal" step="0.1" min="0" value="10">
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Driving Pressure</span>
+                <strong id="dp-total">16</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Unidade</span>
+                <strong>cmH2O</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-moderado" id="dp-severity">Risco intermediario</p>
+            <p class="gcs-severity-desc" id="dp-severity-desc">DeltaP entre 15 e 18 cmH2O. Reavaliar estrategia ventilatoria e mecanica pulmonar.</p>
+
+            <p class="gcs-footnote"><strong>Formula:</strong> Driving Pressure = Pressao de Plato - PEEP total</p>
+          </div>
+
+          <div class="tab-panel dp-panel-interpretacao">
+            <h2>Interpretacao</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINICAO</summary>
+              <p>A Driving Pressure representa a variacao de pressao aplicada ao sistema respiratorio durante o ciclo ventilatorio e reflete o estresse pulmonar.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETACAO</summary>
+              <ul class="gcs-list">
+                <li><strong>ate 14 cmH2O:</strong> alvo protetor</li>
+                <li><strong>15 a 18 cmH2O:</strong> risco intermediario</li>
+                <li><strong>acima de 18 cmH2O:</strong> alto risco de lesao pulmonar</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Mensure a pressao de plato em pausa inspiratoria, confirme a PEEP total e calcule a diferenca para orientar ajustes de ventilacao protetora.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Interpretar junto com volume corrente, complacencia e hemodinamica.</li>
+                <li>Reavaliar apos ajustes de PEEP, volume corrente e recrutamento.</li>
+                <li>Priorizar estrategia pulmonar protetora em pacientes com SDRA.</li>
+              </ul>
+            </details>
+            <p>A interpretacao deve sempre considerar o contexto clinico e a resposta gasometrica.</p>
+          </div>
+
+          <div class="tab-panel dp-panel-evidencias">
+            <h2>Evidencias</h2>
+            <ul class="gcs-list">
+              <li><strong>Amato MBP, et al. (2015)</strong> Driving pressure and survival in the acute respiratory distress syndrome. <em>New England Journal of Medicine</em>, 372(8), 747-755.</li>
+              <li><strong>Villar J, et al. (2017)</strong> A risk tertiles model for predicting mortality in patients with ARDS by driving pressure. <em>Annals of Intensive Care</em>, 7(1), 1-10.</li>
+            </ul>
+            <p>A reducao de Driving Pressure esta associada a melhor desfecho em ventilacao mecanica protetora.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clinicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

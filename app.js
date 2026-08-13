@@ -225,6 +225,56 @@
     updateRass();
   }
 
+  function initDrivingPressureCalculator() {
+    var form = document.getElementById("dp-form");
+    if (!form) {
+      return;
+    }
+
+    var pplatInput = document.getElementById("dp-plat");
+    var peepInput = document.getElementById("dp-peep");
+    var totalEl = document.getElementById("dp-total");
+    var severityEl = document.getElementById("dp-severity");
+    var severityDescEl = document.getElementById("dp-severity-desc");
+
+    if (!pplatInput || !peepInput || !totalEl || !severityEl || !severityDescEl) {
+      return;
+    }
+
+    function readValue(input) {
+      var rawValue = String(input.value || "").trim().replace(",", ".");
+      var value = parseFloat(rawValue);
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function updateDrivingPressure() {
+      var pplat = readValue(pplatInput);
+      var peep = readValue(peepInput);
+      var drivingPressure = Math.max(0, pplat - peep);
+
+      totalEl.textContent = drivingPressure.toFixed(1);
+      severityEl.classList.remove("is-grave", "is-moderado", "is-leve");
+
+      if (drivingPressure <= 14) {
+        severityEl.classList.add("is-leve");
+        severityEl.textContent = "Alvo protetor";
+        severityDescEl.textContent = "Driving Pressure ate 14 cmH2O: padrao associado a menor risco de lesao pulmonar. Manter monitorizacao e reavaliacoes seriadas.";
+      } else if (drivingPressure <= 18) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Risco intermediario";
+        severityDescEl.textContent = "Driving Pressure entre 15 e 18 cmH2O: considerar ajuste de volume corrente, PEEP e estrategia ventilatoria conforme contexto clinico.";
+      } else {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Alto risco de lesao pulmonar";
+        severityDescEl.textContent = "Driving Pressure acima de 18 cmH2O: alto risco de injuria pulmonar associada ao ventilador. Reavaliar ventilacao protetora com prioridade.";
+      }
+    }
+
+    form.addEventListener("input", updateDrivingPressure);
+    form.addEventListener("change", updateDrivingPressure);
+    updateDrivingPressure();
+  }
+
   function initGasometriaCalculator() {
     var form = document.getElementById("gasometria-form");
     if (!form) {
@@ -608,6 +658,7 @@
         setActiveMenuByPath(path);
         initGlasgowCalculator();
         initRassCalculator();
+        initDrivingPressureCalculator();
         initGasometriaCalculator();
         initCifPage();
         initCiap2Page();
@@ -627,6 +678,7 @@
   setActiveMenuByPath(window.location.pathname);
   initGlasgowCalculator();
   initRassCalculator();
+  initDrivingPressureCalculator();
   initGasometriaCalculator();
   initCifPage();
   initCiap2Page();
