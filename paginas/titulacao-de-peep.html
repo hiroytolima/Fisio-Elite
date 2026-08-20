@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Titulação da PEEP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Titulação da PEEP</h1><p class="page-subtitle">Avaliação da mecânica respiratória e otimização da ventilação mecânica.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A titulação da PEEP (Pressão Positiva Expiratória Final) é essencial para ajustar a ventilação mecânica, otimizando a oxigenação e minimizando lesões pulmonares induzidas pelo ventilador.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="peep-tabs" id="peep-tab-calculadora" checked>
+        <input type="radio" name="peep-tabs" id="peep-tab-interpretacao">
+        <input type="radio" name="peep-tabs" id="peep-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas de Titulação da PEEP">
+          <label class="tab-btn" for="peep-tab-calculadora" role="tab">Parâmetros</label>
+          <label class="tab-btn" for="peep-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="peep-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel peep-panel-calculadora">
+            <h2>Parâmetros ventilatórios.</h2>
+            <p>Insira os valores mensurados para avaliação da mecânica respiratória.</p>
+
+            <form class="gcs-form" id="peep-form">
+              <!-- Dados do paciente -->
+              <div class="form-section">
+                <h3>Dados do Paciente</h3>
+                <label for="peep-peso">Peso (kg)</label>
+                <input type="number" id="peep-peso" name="peep-peso" value="70" step="1" min="20" max="200">
+
+                <label for="peep-altura">Altura (cm)</label>
+                <input type="number" id="peep-altura" name="peep-altura" value="170" step="1" min="100" max="250">
+
+                <label for="peep-sexo">Sexo</label>
+                <select id="peep-sexo" name="peep-sexo">
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                </select>
+              </div>
+
+              <!-- Parâmetros ventilatórios -->
+              <div class="form-section">
+                <h3>Parâmetros Ventilatórios</h3>
+                <label for="peep-volume">Volume Corrente (mL)</label>
+                <input type="number" id="peep-volume" name="peep-volume" value="420" step="10" min="100" max="1000">
+
+                <label for="peep-peep">PEEP (cmH₂O)</label>
+                <input type="number" id="peep-peep" name="peep-peep" value="8" step="1" min="0" max="30">
+
+                <label for="peep-plato">Pplatô (cmH₂O)</label>
+                <input type="number" id="peep-plato" name="peep-plato" value="25" step="1" min="0" max="50">
+
+                <label for="peep-pico">Pressão de Pico (cmH₂O)</label>
+                <input type="number" id="peep-pico" name="peep-pico" value="30" step="1" min="0" max="60">
+
+                <label for="peep-freq">Frequência Respiratória (irpm)</label>
+                <input type="number" id="peep-freq" name="peep-freq" value="14" step="1" min="4" max="40">
+
+                <label for="peep-fluxo">Fluxo Inspiratório (L/min)</label>
+                <input type="number" id="peep-fluxo" name="peep-fluxo" value="60" step="5" min="10" max="120">
+
+                <label for="peep-fio2">FiO₂ (%)</label>
+                <input type="number" id="peep-fio2" name="peep-fio2" value="40" step="5" min="21" max="100">
+              </div>
+
+              <!-- Gasometria -->
+              <div class="form-section">
+                <h3>Gasometria Arterial</h3>
+                <label for="peep-ph">pH</label>
+                <input type="number" id="peep-ph" name="peep-ph" value="7.38" step="0.01" min="7.0" max="7.6">
+
+                <label for="peep-paco2">PaCO₂ (mmHg)</label>
+                <input type="number" id="peep-paco2" name="peep-paco2" value="42" step="1" min="10" max="100">
+
+                <label for="peep-pao2">PaO₂ (mmHg)</label>
+                <input type="number" id="peep-pao2" name="peep-pao2" value="85" step="1" min="20" max="150">
+
+                <label for="peep-hco3">HCO₃⁻ (mEq/L)</label>
+                <input type="number" id="peep-hco3" name="peep-hco3" value="24" step="0.5" min="5" max="40">
+
+                <label for="peep-sao2">SatO₂ (%)</label>
+                <input type="number" id="peep-sao2" name="peep-sao2" value="96" step="1" min="50" max="100">
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Peso Predito (mL/kg)</span>
+                <strong id="peep-peso-predito">6.0</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Driving Pressure</span>
+                <strong id="peep-driving-result">17</strong>
+                <span>cmH₂O</span>
+              </div>
+              <div class="gcs-result-item">
+                <span>Cest (mL/cmH₂O)</span>
+                <strong id="peep-cest-result">24.7</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Relação PEEP/Pplatô</span>
+                <strong id="peep-ratio">0.32</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Relação PaO₂/FiO₂</span>
+                <strong id="peep-pf-ratio">212.5</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="peep-status">Avalie os parâmetros para otimização</p>
+            <p class="peep-status-desc" id="peep-status-desc">Driving Pressure ≤ 15 cmH₂O e Pplatô ≤ 30 cmH₂O são metas recomendadas para proteção pulmonar.</p>
+          </div>
+
+          <div class="tab-panel peep-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A titulação da PEEP envolve o ajuste da pressão positiva expiratória final com base em parâmetros como volume corrente, Pplatô, driving pressure e complacência estática (Cest).</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE REFERÊNCIA</summary>
+              <ul class="gcs-list">
+                <li><strong>Volume Corrente:</strong> 6-8 mL/kg (peso predito)</li>
+                <li><strong>PEEP:</strong> 5-15 cmH₂O (individualizado)</li>
+                <li><strong>Pplatô:</strong> ≤ 30 cmH₂O</li>
+                <li><strong>Driving Pressure:</strong> ≤ 15 cmH₂O</li>
+                <li><strong>Cest:</strong> 50-100 mL/cmH₂O (valores normais)</li>
+                <li><strong>PaO₂/FiO₂:</strong> > 300 mmHg (normal)</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Monitore os parâmetros ventilatórios em ventilação controlada, realizando pausa inspiratória e expiratória para mensurar Pplatô e PEEP total. Ajuste a PEEP para obter melhor complacência e oxigenação com driving pressure segura.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A titulação adequada da PEEP reduz o risco de lesão pulmonar induzida pelo ventilador (VILI), melhora a oxigenação e otimiza a mecânica respiratória em pacientes críticos.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Avaliar a PEEP de forma individualizada, considerando a relação PEEP/Pplatô.</li>
+                <li>Manter driving pressure < 15 cmH₂O para reduzir mortalidade.</li>
+                <li>Monitorar a complacência estática para ajuste fino da ventilação.</li>
+                <li>Utilizar a relação PaO₂/FiO₂ para avaliar a oxigenação.</li>
+              </ul>
+            </details>
+            <p>Interprete os parâmetros em conjunto com a gasometria e a evolução clínica do paciente.</p>
+          </div>
+
+          <div class="tab-panel peep-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Amato MBP, et al. (2015)</strong> Driving pressure and survival in the acute respiratory distress syndrome. <em>New England Journal of Medicine</em>, 372(8), 747-755.</li>
+              <li><strong>Goligher EC, et al. (2014)</strong> Lung recruitment maneuvers in ARDS. <em>Intensive Care Medicine</em>, 40(4), 571-580.</li>
+              <li><strong>ARDSNet (2000)</strong> Ventilation with lower tidal volumes as compared with traditional tidal volumes for acute lung injury and the acute respiratory distress syndrome. <em>New England Journal of Medicine</em>, 342(18), 1301-1308.</li>
+            </ul>
+            <p>A titulação da PEEP baseada em driving pressure e complacência está associada a melhores desfechos em pacientes com SDRA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | ROX Index</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Índice ROX</h1><p class="page-subtitle">Índice de oxigenação respiratória – predição de falência da CNAF (Cateter Nasal de Alto Fluxo).</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>O índice ROX (R = respiração, O = oxigenação, X = índice) é calculado como (SpO₂ / FiO₂) / frequência respiratória. Valores ≥ 4,88 indicam baixo risco de falência da CNAF em até 12 horas.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="rox-tabs" id="rox-tab-calculadora" checked>
+        <input type="radio" name="rox-tabs" id="rox-tab-interpretacao">
+        <input type="radio" name="rox-tabs" id="rox-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas do Índice ROX">
+          <label class="tab-btn" for="rox-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="rox-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="rox-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel rox-panel-calculadora">
+            <h2>Calculadora do Índice ROX</h2>
+            <p>Preencha os valores abaixo para calcular o índice ROX e avaliar o risco de falência da CNAF.</p>
+
+            <form class="gcs-form" id="rox-form">
+              <label for="rox-spo2">SpO₂ (%)</label>
+              <input type="number" id="rox-spo2" name="rox-spo2" min="70" max="100" value="94" step="1" required>
+
+              <label for="rox-fio2">FiO₂ (%)</label>
+              <input type="number" id="rox-fio2" name="rox-fio2" min="21" max="100" value="40" step="1" required>
+
+              <label for="rox-rr">Frequência Respiratória (irpm)</label>
+              <input type="number" id="rox-rr" name="rox-rr" min="4" max="60" value="24" step="1" required>
+
+              <button type="button" id="rox-calc-btn" class="btn-primary">Calcular ROX</button>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Índice ROX</span>
+                <strong id="rox-total">—</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-neutro" id="rox-severity">Aguardando cálculo</p>
+            <p class="rox-severity-desc" id="rox-severity-desc">Preencha os dados e clique em "Calcular ROX".</p>
+          </div>
+
+          <div class="tab-panel rox-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>O índice ROX é um preditor não invasivo de falência da CNAF em pacientes com insuficiência respiratória aguda. Fórmula: (SpO₂ / FiO₂) / frequência respiratória.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>≥ 4,88:</strong> Baixo risco de falência da CNAF em até 12 horas.</li>
+                <li><strong>3,85 – 4,87:</strong> Risco intermediário – monitorização rigorosa.</li>
+                <li><strong>&lt; 3,85:</strong> Alto risco de falência – considerar intubação precoce.</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Medir SpO₂, FiO₂ e frequência respiratória no mesmo momento. Calcular o índice e reavaliar seriadamente (a cada 2–6 horas) para acompanhar tendência.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Porque o ROX é simples, rápido e bem validado para predizer sucesso ou falência da CNAF, auxiliando na decisão de intubação precoce e reduzindo atrasos.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Registrar o valor junto com parâmetros clínicos e gasometria.</li>
+                <li>Interpretar o resultado considerando a evolução clínica do paciente.</li>
+                <li>Valores abaixo de 3,85 por 2 medições consecutivas indicam alta probabilidade de falência.</li>
+              </ul>
+            </details>
+            <p>Interprete o índice ROX em conjunto com a evolução clínica e outros marcadores de gravidade.</p>
+          </div>
+
+          <div class="tab-panel rox-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Roca O, et al. (2016)</strong> Index for predicting failure of high-flow nasal cannula in patients with acute hypoxemic respiratory failure. <em>Critical Care</em>, 20(1), 183.</li>
+              <li><strong>Frat JP, et al. (2015)</strong> High-flow oxygen through nasal cannula in acute hypoxemic respiratory failure. <em>NEJM</em>, 372(23), 2185-2196.</li>
+            </ul>
+            <p>O índice ROX é recomendado em diretrizes para monitorização e decisão de intubação em pacientes com CNAF.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+  <script>
+    (function() {
+      const spo2Input = document.getElementById('rox-spo2');
+      const fio2Input = document.getElementById('rox-fio2');
+      const rrInput = document.getElementById('rox-rr');
+      const calcBtn = document.getElementById('rox-calc-btn');
+      const roxTotal = document.getElementById('rox-total');
+      const roxSeverity = document.getElementById('rox-severity');
+      const roxSeverityDesc = document.getElementById('rox-severity-desc');
+
+      function calcularROX() {
+        const spo2 = parseFloat(spo2Input.value);
+        const fio2 = parseFloat(fio2Input.value);
+        const rr = parseFloat(rrInput.value);
+
+        if (isNaN(spo2) || isNaN(fio2) || isNaN(rr) || fio2 === 0 || rr === 0) {
+          roxTotal.textContent = '—';
+          roxSeverity.textContent = 'Dados inválidos';
+          roxSeverity.className = 'gcs-severity is-erro';
+          roxSeverityDesc.textContent = 'Verifique os valores inseridos.';
+          return;
+        }
+
+        const rox = (spo2 / fio2) / rr;
+        const roxFixed = rox.toFixed(2);
+        roxTotal.textContent = roxFixed;
+
+        let severityClass = 'is-neutro';
+        let severityText = '';
+        let descText = '';
+
+        if (rox >= 4.88) {
+          severityClass = 'is-bom';
+          severityText = 'Baixo risco de falência';
+          descText = 'Paciente com alta probabilidade de sucesso na CNAF. Continue monitorando.';
+        } else if (rox >= 3.85) {
+          severityClass = 'is-atencao';
+          severityText = 'Risco intermediário';
+          descText = 'Monitorização rigorosa. Reavalie em 2–6 horas.';
+        } else {
+          severityClass = 'is-critico';
+          severityText = 'Alto risco de falência';
+          descText = 'Considerar intubação precoce. Reavalie imediatamente.';
+        }
+
+        roxSeverity.className = 'gcs-severity ' + severityClass;
+        roxSeverity.textContent = severityText;
+        roxSeverityDesc.textContent = descText;
+      }
+
+      calcBtn.addEventListener('click', calcularROX);
+
+      // Permitir cálculo ao pressionar Enter nos campos
+      [spo2Input, fio2Input, rrInput].forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            calcularROX();
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

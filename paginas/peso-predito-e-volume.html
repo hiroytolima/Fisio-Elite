@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Peso Predito e Volume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Peso Predito e Volume</h1><p class="page-subtitle">Cálculo do peso ideal e volume corrente para ventilação mecânica protetiva.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>O cálculo do peso predito (PP) e do volume corrente (VC) é essencial para instituir ventilação mecânica protetiva, reduzindo o risco de lesão pulmonar induzida pela ventilação (VILI).</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="pv-tabs" id="pv-tab-calculadora" checked>
+        <input type="radio" name="pv-tabs" id="pv-tab-interpretacao">
+        <input type="radio" name="pv-tabs" id="pv-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas de Peso Predito e Volume">
+          <label class="tab-btn" for="pv-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="pv-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="pv-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel pv-panel-calculadora">
+            <h2>Calculadora de Peso Predito e Volume Corrente.</h2>
+            <p>Informe os dados do paciente para calcular o peso ideal e o volume corrente para ventilação protetiva.</p>
+
+            <form class="gcs-form" id="pv-form">
+              <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+                <div style="flex:1; min-width:120px;">
+                  <label for="pv-sexo">Sexo</label>
+                  <select id="pv-sexo" name="pv-sexo">
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                  </select>
+                </div>
+                <div style="flex:1; min-width:120px;">
+                  <label for="pv-altura">Altura (cm)</label>
+                  <input type="number" id="pv-altura" name="pv-altura" value="170" min="100" max="250" step="0.5">
+                </div>
+                <div style="flex:1; min-width:120px;">
+                  <label for="pv-peso">Peso atual (kg) <span style="font-weight:400;opacity:0.7;">opcional</span></label>
+                  <input type="number" id="pv-peso" name="pv-peso" placeholder="--" min="20" max="300" step="0.5">
+                </div>
+              </div>
+
+              <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+                <div style="flex:1; min-width:120px;">
+                  <label for="pv-vt-param">Volume corrente alvo (mL/kg PP)</label>
+                  <select id="pv-vt-param" name="pv-vt-param">
+                    <option value="5">5 mL/kg</option>
+                    <option value="6">6 mL/kg (ARDSnet)</option>
+                    <option value="7">7 mL/kg</option>
+                    <option value="8">8 mL/kg</option>
+                    <option value="9">9 mL/kg</option>
+                    <option value="6.5" selected>6,5 mL/kg</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Peso Predito (PP)</span>
+                <strong id="peso-predito">--</strong>
+                <span style="font-size:0.8rem; font-weight:400; opacity:0.7;">kg</span>
+              </div>
+              <div class="gcs-result-item">
+                <span>Volume Corrente (VC)</span>
+                <strong id="volume-corrente">--</strong>
+                <span style="font-size:0.8rem; font-weight:400; opacity:0.7;">mL</span>
+              </div>
+              <div class="gcs-result-item">
+                <span>Relação VC/PP</span>
+                <strong id="relacao-vt-pp">--</strong>
+                <span style="font-size:0.8rem; font-weight:400; opacity:0.7;">mL/kg</span>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="pv-severity">✅ Ventilação protetiva</p>
+            <p class="pv-severity-desc" id="pv-severity-desc">Volume corrente dentro da faixa recomendada para proteção pulmonar (6-8 mL/kg PP).</p>
+          </div>
+
+          <div class="tab-panel pv-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>O peso predito (PP) é o peso ideal estimado com base na altura e sexo do paciente, utilizado como referência para calcular o volume corrente na ventilação mecânica protetiva.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FÓRMULAS</summary>
+              <ul class="gcs-list">
+                <li><strong>Homem:</strong> PP (kg) = 50 + 0,91 × (altura em cm – 152,4)</li>
+                <li><strong>Mulher:</strong> PP (kg) = 45,5 + 0,91 × (altura em cm – 152,4)</li>
+                <li><strong>Volume Corrente:</strong> VC (mL) = PP × fator (6-8 mL/kg)</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS RECOMENDADAS</summary>
+              <ul class="gcs-list">
+                <li><strong>6 mL/kg PP:</strong> Padrão ARDSnet para SDRA</li>
+                <li><strong>6-8 mL/kg PP:</strong> Ventilação protetiva geral</li>
+                <li><strong>&gt; 8 mL/kg PP:</strong> Risco aumentado de VILI</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Porque o uso do peso predito, em vez do peso real, padroniza o volume corrente e reduz a incidência de lesão pulmonar induzida pela ventilação, especialmente em pacientes obesos.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Ajustar o volume corrente conforme a mecânica respiratória (pressão de platô &lt; 30 cmH₂O).</li>
+                <li>Monitorar a pressão de platô e a driving pressure para otimizar a proteção pulmonar.</li>
+                <li>Considerar a relação VC/PP e a complacência do sistema respiratório.</li>
+              </ul>
+            </details>
+            <p>Interprete o volume corrente calculado em conjunto com a pressão de platô e a mecânica respiratória do paciente.</p>
+          </div>
+
+          <div class="tab-panel pv-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>ARDS Network (2000)</strong> Ventilation with lower tidal volumes as compared with traditional tidal volumes for acute lung injury and the acute respiratory distress syndrome. <em>New England Journal of Medicine</em>, 342(18), 1301-1308.</li>
+              <li><strong>Amato MBP, et al. (2015)</strong> Driving pressure and survival in the acute respiratory distress syndrome. <em>New England Journal of Medicine</em>, 372(8), 747-755.</li>
+              <li><strong>Fan E, et al. (2017)</strong> An official American Thoracic Society/European Society of Intensive Care Medicine/Society of Critical Care Medicine clinical practice guideline: mechanical ventilation in adult patients with acute respiratory distress syndrome. <em>American Journal of Respiratory and Critical Care Medicine</em>, 195(9), 1253-1263.</li>
+            </ul>
+            <p>O uso do peso predito para calcular o volume corrente é recomendado por diretrizes internacionais para reduzir a mortalidade e o tempo de ventilação mecânica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script>
+    (function() {
+      const sexoSelect = document.getElementById('pv-sexo');
+      const alturaInput = document.getElementById('pv-altura');
+      const pesoInput = document.getElementById('pv-peso');
+      const vtParamSelect = document.getElementById('pv-vt-param');
+
+      const pesoPreditoEl = document.getElementById('peso-predito');
+      const volumeCorrenteEl = document.getElementById('volume-corrente');
+      const relacaoVtPpEl = document.getElementById('relacao-vt-pp');
+      const severidadeEl = document.getElementById('pv-severity');
+      const severidadeDescEl = document.getElementById('pv-severity-desc');
+
+      function calcularPesoPredito(sexo, alturaCm) {
+        if (sexo === 'masculino') {
+          return 50 + 0.91 * (alturaCm - 152.4);
+        } else {
+          return 45.5 + 0.91 * (alturaCm - 152.4);
+        }
+      }
+
+      function atualizarResultados() {
+        const sexo = sexoSelect.value;
+        const altura = parseFloat(alturaInput.value);
+        const vtFactor = parseFloat(vtParamSelect.value);
+
+        if (isNaN(altura) || altura < 100 || altura > 250) {
+          pesoPreditoEl.textContent = '--';
+          volumeCorrenteEl.textContent = '--';
+          relacaoVtPpEl.textContent = '--';
+          severidadeEl.textContent = '⚠️ Dados inválidos';
+          severidadeEl.className = 'gcs-severity is-atencao';
+          severidadeDescEl.textContent = 'Verifique a altura informada (100-250 cm).';
+          return;
+        }
+
+        const pp = calcularPesoPredito(sexo, altura);
+        const vt = pp * vtFactor;
+
+        pesoPreditoEl.textContent = pp.toFixed(1);
+        volumeCorrenteEl.textContent = Math.round(vt);
+        relacaoVtPpEl.textContent = vtFactor.toFixed(1);
+
+        // Classificação da ventilação
+        if (vtFactor >= 6 && vtFactor <= 8) {
+          severidadeEl.textContent = '✅ Ventilação protetiva';
+          severidadeEl.className = 'gcs-severity is-leve';
+          severidadeDescEl.textContent = 'Volume corrente dentro da faixa recomendada para proteção pulmonar (6-8 mL/kg PP).';
+        } else if (vtFactor < 6) {
+          severidadeEl.textContent = '⚠️ Volume corrente baixo';
+          severidadeEl.className = 'gcs-severity is-atencao';
+          severidadeDescEl.textContent = 'Volume corrente abaixo do recomendado. Pode levar a hipoventilação e atelectasias.';
+        } else {
+          severidadeEl.textContent = '⚠️ Volume corrente elevado';
+          severidadeEl.className = 'gcs-severity is-grave';
+          severidadeDescEl.textContent = 'Volume corrente acima do recomendado. Aumenta o risco de lesão pulmonar induzida pela ventilação (VILI).';
+        }
+      }
+
+      sexoSelect.addEventListener('change', atualizarResultados);
+      alturaInput.addEventListener('input', atualizarResultados);
+      vtParamSelect.addEventListener('change', atualizarResultados);
+
+      // Inicializar
+      atualizarResultados();
+    })();
+  </script>
+</body>
+</html>

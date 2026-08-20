@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala SOFA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala SOFA</h1><p class="page-subtitle">Avaliação do grau de disfunção orgânica em pacientes críticos.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A SOFA (Sequential Organ Failure Assessment) varia de 0 a 24 pontos e avalia a disfunção de seis sistemas orgânicos: respiratório, cardiovascular, hepático, coagulação, renal e neurológico.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="sofa-tabs" id="sofa-tab-calculadora" checked>
+        <input type="radio" name="sofa-tabs" id="sofa-tab-interpretacao">
+        <input type="radio" name="sofa-tabs" id="sofa-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala SOFA">
+          <label class="tab-btn" for="sofa-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="sofa-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="sofa-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel sofa-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Selecione os valores de cada sistema para calcular o escore SOFA.</p>
+
+            <form class="sofa-form" id="sofa-form">
+              <!-- Sistema Respiratório -->
+              <div class="sofa-system">
+                <label for="sofa-resp">Respiratório (PaO₂/FiO₂)</label>
+                <select id="sofa-resp" name="sofa-resp">
+                  <option value="0">≥ 400</option>
+                  <option value="1">&lt; 400</option>
+                  <option value="2">&lt; 300</option>
+                  <option value="3">&lt; 200 (com suporte ventilatório)</option>
+                  <option value="4">&lt; 100 (com suporte ventilatório)</option>
+                </select>
+              </div>
+
+              <!-- Sistema Cardiovascular -->
+              <div class="sofa-system">
+                <label for="sofa-cardio">Cardiovascular (PAM ou drogas vasoativas)</label>
+                <select id="sofa-cardio" name="sofa-cardio">
+                  <option value="0">PAM ≥ 70 mmHg</option>
+                  <option value="1">PAM &lt; 70 mmHg</option>
+                  <option value="2">Dopamina ≤ 5 ou Dobutamina (q</option>
+                  <option value="3">Dopamina &gt; 5 ou Epinefrina ≤ 0,1 ou Norepinefrina ≤ 0,1</option>
+                  <option value="4">Dopamina &gt; 15 ou Epinefrina &gt; 0,1 ou Norepinefrina &gt; 0,1</option>
+                </select>
+              </div>
+
+              <!-- Sistema Hepático -->
+              <div class="sofa-system">
+                <label for="sofa-hepatic">Hepático (Bilirrubina mg/dL)</label>
+                <select id="sofa-hepatic" name="sofa-hepatic">
+                  <option value="0">&lt; 1,2</option>
+                  <option value="1">1,2 - 1,9</option>
+                  <option value="2">2,0 - 5,9</option>
+                  <option value="3">6,0 - 11,9</option>
+                  <option value="4">≥ 12,0</option>
+                </select>
+              </div>
+
+              <!-- Coagulação -->
+              <div class="sofa-system">
+                <label for="sofa-coag">Coagulação (Plaquetas x 10³/mm³)</label>
+                <select id="sofa-coag" name="sofa-coag">
+                  <option value="0">≥ 150</option>
+                  <option value="1">&lt; 150</option>
+                  <option value="2">&lt; 100</option>
+                  <option value="3">&lt; 50</option>
+                  <option value="4">&lt; 20</option>
+                </select>
+              </div>
+
+              <!-- Sistema Renal -->
+              <div class="sofa-system">
+                <label for="sofa-renal">Renal (Creatinina mg/dL ou débito urinário)</label>
+                <select id="sofa-renal" name="sofa-renal">
+                  <option value="0">&lt; 1,2</option>
+                  <option value="1">1,2 - 1,9</option>
+                  <option value="2">2,0 - 3,4</option>
+                  <option value="3">3,5 - 4,9 ou débito &lt; 500 mL/dia</option>
+                  <option value="4">≥ 5,0 ou débito &lt; 200 mL/dia</option>
+                </select>
+              </div>
+
+              <!-- Sistema Neurológico -->
+              <div class="sofa-system">
+                <label for="sofa-neuro">Neurológico (Escala de Coma de Glasgow)</label>
+                <select id="sofa-neuro" name="sofa-neuro">
+                  <option value="0">15</option>
+                  <option value="1">13 - 14</option>
+                  <option value="2">10 - 12</option>
+                  <option value="3">6 - 9</option>
+                  <option value="4">&lt; 6</option>
+                </select>
+              </div>
+            </form>
+
+            <div class="sofa-result" aria-live="polite">
+              <div class="sofa-result-item">
+                <span>SOFA Total</span>
+                <strong id="sofa-total">0</strong>
+              </div>
+            </div>
+
+            <p class="sofa-severity is-leve" id="sofa-severity">Baixa disfunção orgânica</p>
+            <p class="sofa-severity-desc" id="sofa-severity-desc">Escore SOFA ≤ 6 indica baixo risco de mortalidade.</p>
+          </div>
+
+          <div class="tab-panel sofa-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="sofa-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A SOFA quantifica a disfunção orgânica em seis sistemas, com pontuação de 0 a 4 para cada um. Quanto maior o escore, maior a disfunção e o risco de mortalidade.</p>
+            </details>
+            <details class="sofa-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="sofa-list">
+                <li><strong>0 - 6:</strong> Baixa disfunção orgânica</li>
+                <li><strong>7 - 9:</strong> Disfunção moderada</li>
+                <li><strong>10 - 12:</strong> Disfunção grave</li>
+                <li><strong>13 - 24:</strong> Disfunção muito grave</li>
+              </ul>
+            </details>
+            <details class="sofa-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Avalie os parâmetros de cada sistema nas primeiras 24 horas de internação na UTI e repita diariamente para acompanhar a evolução clínica.</p>
+            </details>
+            <details class="sofa-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A SOFA padroniza a avaliação da disfunção orgânica, auxilia na previsão de prognóstico e na tomada de decisão terapêutica em pacientes críticos.</p>
+            </details>
+            <details class="sofa-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="sofa-list">
+                <li>Registrar os valores laboratoriais e clínicos no momento da avaliação.</li>
+                <li>Interpretar o escore total considerando a tendência (piora ou melhora).</li>
+                <li>Utilizar a escala em conjunto com outros índices de gravidade.</li>
+              </ul>
+            </details>
+            <p>Interprete o escore SOFA junto ao quadro clínico geral e à evolução do paciente.</p>
+          </div>
+
+          <div class="tab-panel sofa-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="sofa-list">
+              <li><strong>Vincent JL, et al. (1996)</strong> The SOFA (Sepsis-related Organ Failure Assessment) score to describe organ dysfunction/failure. <em>Intensive Care Medicine</em>, 22(7), 707-710.</li>
+              <li><strong>Ferreira FL, et al. (2001)</strong> Serial evaluation of the SOFA score to predict outcome in critically ill patients. <em>JAMA</em>, 286(14), 1754-1758.</li>
+              <li><strong>Moreno R, et al. (1999)</strong> The use of maximum SOFA score to quantify organ dysfunction/failure in intensive care. <em>Intensive Care Medicine</em>, 25(7), 686-696.</li>
+            </ul>
+            <p>A escala SOFA é amplamente validada e recomendada para monitoramento da disfunção orgânica em UTIs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('sofa-form');
+      const totalDisplay = document.getElementById('sofa-total');
+      const severityDisplay = document.getElementById('sofa-severity');
+      const severityDesc = document.getElementById('sofa-severity-desc');
+
+      // Mapeamento dos elementos select para cálculo
+      const selects = {
+        resp: document.getElementById('sofa-resp'),
+        cardio: document.getElementById('sofa-cardio'),
+        hepatic: document.getElementById('sofa-hepatic'),
+        coag: document.getElementById('sofa-coag'),
+        renal: document.getElementById('sofa-renal'),
+        neuro: document.getElementById('sofa-neuro')
+      };
+
+      function calculateSOFA() {
+        let total = 0;
+        for (let key in selects) {
+          total += parseInt(selects[key].value, 10);
+        }
+
+        totalDisplay.textContent = total;
+
+        // Determinar a classificação de gravidade
+        let severityClass = 'is-leve';
+        let severityText = 'Baixa disfunção orgânica';
+        let severityDescription = 'Escore SOFA ≤ 6 indica baixo risco de mortalidade.';
+
+        if (total >= 7 && total <= 9) {
+          severityClass = 'is-moderado';
+          severityText = 'Disfunção moderada';
+          severityDescription = 'Escore SOFA 7-9 indica disfunção orgânica moderada.';
+        } else if (total >= 10 && total <= 12) {
+          severityClass = 'is-grave';
+          severityText = 'Disfunção grave';
+          severityDescription = 'Escore SOFA 10-12 indica disfunção orgânica grave.';
+        } else if (total >= 13) {
+          severityClass = 'is-muito-grave';
+          severityText = 'Disfunção muito grave';
+          severityDescription = 'Escore SOFA ≥ 13 indica disfunção orgânica muito grave e alto risco de mortalidade.';
+        }
+
+        // Atualizar a classe e o texto
+        severityDisplay.className = 'sofa-severity ' + severityClass;
+        severityDisplay.textContent = severityText;
+        severityDesc.textContent = severityDescription;
+      }
+
+      // Adicionar evento de mudança para todos os selects
+      for (let key in selects) {
+        selects[key].addEventListener('change', calculateSOFA);
+      }
+
+      // Calcular ao carregar a página
+      calculateSOFA();
+    });
+  </script>
+</body>
+</html>

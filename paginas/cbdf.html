@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | CBDF-1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Estilos para manter a consistência e funcionalidade */
+    .cbdf-nav { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
+    .cbdf-step { flex: 1; min-width: 150px; }
+    .cbdf-step label { display: block; font-size: 0.85rem; font-weight: 600; color: #555; margin-bottom: 4px; }
+    .cbdf-step select, .cbdf-step input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; background: #fff; }
+    .cbdf-result-box { background: #f5f7fb; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #1a73e8; }
+    .cbdf-result-box .code { font-size: 1.8rem; font-weight: 800; color: #1a73e8; letter-spacing: 1px; }
+    .cbdf-result-box .desc { margin-top: 8px; color: #333; font-weight: 500; }
+    .cbdf-detail { font-size: 0.95rem; color: #555; margin-top: 6px; }
+    .severity-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 8px; }
+    .sev-leve { background: #e8f5e9; color: #2e7d32; }
+    .sev-moderado { background: #fff3e0; color: #e65100; }
+    .sev-grave { background: #ffebee; color: #c62828; }
+    .cbdf-action-btn { background: #1a73e8; color: #fff; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .cbdf-action-btn:hover { background: #1557b0; }
+    .cbdf-clear-btn { background: transparent; color: #666; border: 1px solid #ddd; padding: 12px 30px; border-radius: 30px; font-weight: 500; cursor: pointer; margin-left: 10px; transition: 0.2s; }
+    .cbdf-clear-btn:hover { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">CBDF-1</h1><p class="page-subtitle">Classificação Brasileira de Diagnósticos Fisioterapêuticos — Primeira Atualização (2025).</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A CBDF-1 organiza os diagnósticos fisioterapêuticos em domínios funcionais, facilitando a tomada de decisão clínica, a comunicação entre profissionais e a padronização dos registros.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="cbdf-tabs" id="cbdf-tab-classificacao" checked>
+        <input type="radio" name="cbdf-tabs" id="cbdf-tab-interpretacao">
+        <input type="radio" name="cbdf-tabs" id="cbdf-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da CBDF-1">
+          <label class="tab-btn" for="cbdf-tab-classificacao" role="tab">Classificação</label>
+          <label class="tab-btn" for="cbdf-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="cbdf-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel cbdf-panel-classificacao">
+            <h2>Classificação funcional por domínios.</h2>
+            <p>Selecione o domínio, o código, o status e os detalhes para compor o diagnóstico CBDF-1.</p>
+
+            <!-- Navegação por etapas similar ao site oficial -->
+            <div class="cbdf-nav">
+              <div class="cbdf-step">
+                <label for="cbdf-dominio">Domínio</label>
+                <select id="cbdf-dominio">
+                  <option value="">Escolha o domínio</option>
+                  <option value="Saúde">Saúde</option>
+                  <option value="Deficiência">Deficiência</option>
+                  <option value="Mobilidade">Mobilidade</option>
+                  <option value="Participação">Participação</option>
+                </select>
+              </div>
+              <div class="cbdf-step">
+                <label for="cbdf-codigo">Código</label>
+                <select id="cbdf-codigo" disabled>
+                  <option value="">Selecione o código</option>
+                </select>
+              </div>
+              <div class="cbdf-step">
+                <label for="cbdf-status">Status</label>
+                <select id="cbdf-status" disabled>
+                  <option value="">Escolha o status</option>
+                  <option value="Leve">Leve</option>
+                  <option value="Moderado">Moderado</option>
+                  <option value="Grave">Grave</option>
+                </select>
+              </div>
+              <div class="cbdf-step">
+                <label for="cbdf-detalhe">Detalhe</label>
+                <select id="cbdf-detalhe" disabled>
+                  <option value="">Por favor continue</option>
+                  <option value="A">Preciso saber um pouco mais</option>
+                  <option value="B">Estamos quase lá</option>
+                  <option value="C">Só falta este bloco</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin: 20px 0;">
+              <button class="cbdf-action-btn" id="cbdf-buscar">Buscar diagnóstico</button>
+              <button class="cbdf-clear-btn" id="cbdf-limpar">Limpar</button>
+            </div>
+
+            <!-- Área de resultado -->
+            <div class="cbdf-result-box" id="cbdf-resultado">
+              <div class="code" id="cbdf-codigo-completo">?.?.?.?.?.?</div>
+              <div class="desc" id="cbdf-descricao">? - ? | ? | ? | ? | ?</div>
+              <div class="cbdf-detail" id="cbdf-detalhes"></div>
+              <div id="cbdf-severidade-container"></div>
+            </div>
+          </div>
+
+          <div class="tab-panel cbdf-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A CBDF-1 é um sistema de classificação que organiza diagnósticos fisioterapêuticos a partir da CIF (Classificação Internacional de Funcionalidade), com foco em domínios e categorias funcionais.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>DOMÍNIOS FUNCIONAIS</summary>
+              <ul class="gcs-list">
+                <li><strong>Saúde:</strong> Condições relacionadas a sistemas orgânicos.</li>
+                <li><strong>Deficiência:</strong> Comprometimentos de estruturas e funções.</li>
+                <li><strong>Mobilidade:</strong> Capacidade de movimento e deslocamento.</li>
+                <li><strong>Participação:</strong> Envolvimento em situações da vida.</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Selecione o domínio, o código específico, o status e o detalhe para compor o diagnóstico completo. O código CBDF-1 gerado reflete a condição funcional do paciente.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Padroniza a linguagem diagnóstica, melhora a comunicação interprofissional e orienta o planejamento terapêutico com base em evidências.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Utilizar a CBDF-1 em conjunto com a avaliação fisioterapêutica completa.</li>
+                <li>Registrar o diagnóstico e reavaliar periodicamente a evolução funcional.</li>
+                <li>Adaptar a intervenção conforme a resposta do paciente ao tratamento.</li>
+              </ul>
+            </details>
+            <p>Interprete considerando a individualidade do paciente e os objetivos do tratamento.</p>
+          </div>
+
+          <div class="tab-panel cbdf-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Organização Mundial da Saúde (2003).</strong> CIF: Classificação Internacional de Funcionalidade, Incapacidade e Saúde. São Paulo: EDUSP.</li>
+              <li><strong>Sarria, R. S., et al. (2020).</strong> Classificação Brasileira de Diagnósticos Fisioterapêuticos: construção e validação de conteúdo. <em>Revista Brasileira de Fisioterapia</em>, 24(2), 145-153.</li>
+              <li><strong>Ferreira, P. H., & Ferreira, M. L. (2018).</strong> Uso da CIF na prática clínica da fisioterapia: revisão de escopo. <em>Fisioterapia e Pesquisa</em>, 25(3), 310-318.</li>
+            </ul>
+            <p>A CBDF-1 é recomendada para padronizar diagnósticos, planejar intervenções e mensurar desfechos funcionais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script>
+    (function() {
+      // Base de dados CBDF-1 (simplificada, mas com estrutura similar ao site oficial)
+      const baseDados = {
+        'Saúde': {
+          codigos: [
+            { id: 'S01', desc: 'Saúde cinético-funcional Neuroperiférica' },
+            { id: 'S02', desc: 'Saúde cinético-funcional Neurocentral' },
+            { id: 'S03', desc: 'Saúde cinético-funcional Musculoesquelético' },
+            { id: 'S04', desc: 'Saúde cinético-funcional Respiratória' },
+            { id: 'S05', desc: 'Saúde cinético-funcional Cardiovascular' },
+            { id: 'S06', desc: 'Saúde cinético-funcional Tegumentar' },
+            { id: 'S07', desc: 'Saúde cinético-funcional Urinária' },
+            { id: 'S08', desc: 'Saúde cinético-funcional Genital' },
+            { id: 'S09', desc: 'Saúde cinético-funcional Digestória' },
+            { id: 'S10', desc: 'Saúde cinético-funcional Metabólica' }
+          ],
+          detalhes: {
+            'S01': { especifico: 'Neuropatia periférica', sufixo: 'A' },
+            'S02': { especifico: 'Lesão central', sufixo: 'B' },
+            'S03': { especifico: 'Disfunção musculoesquelética', sufixo: 'C' },
+            'S04': { especifico: 'Disfunção respiratória', sufixo: 'D' },
+            'S05': { especifico: 'Disfunção cardiovascular', sufixo: 'E' },
+            'S06': { especifico: 'Disfunção tegumentar', sufixo: 'F' },
+            'S07': { especifico: 'Disfunção urinária', sufixo: 'G' },
+            'S08': { especifico: 'Disfunção genital', sufixo: 'H' },
+            'S09': { especifico: 'Disfunção digestória', sufixo: 'I' },
+            'S10': { especifico: 'Disfunção metabólica', sufixo: 'J' }
+          }
+        },
+        'Deficiência': {
+          codigos: [
+            { id: 'D01', desc: 'Deficiência de membros superiores' },
+            { id: 'D02', desc: 'Deficiência de membros inferiores' },
+            { id: 'D03', desc: 'Deficiência de tronco' }
+          ],
+          detalhes: {
+            'D01': { especifico: 'Limitação funcional de MMSS', sufixo: 'K' },
+            'D02': { especifico: 'Limitação funcional de MMII', sufixo: 'L' },
+            'D03': { especifico: 'Limitação funcional de tronco', sufixo: 'M' }
+          }
+        },
+        'Mobilidade': {
+          codigos: [
+            { id: 'M01', desc: 'Mobilidade no leito' },
+            { id: 'M02', desc: 'Mobilidade para transferências' },
+            { id: 'M03', desc: 'Deambulação' }
+          ],
+          detalhes: {
+            'M01': { especifico: 'Dificuldade para mudar de posição', sufixo: 'N' },
+            'M02': { especifico: 'Dependência para transferências', sufixo: 'O' },
+            'M03': { especifico: 'Limitação da marcha', sufixo: 'P' }
+          }
+        },
+        'Participação': {
+          codigos: [
+            { id: 'P01', desc: 'Participação em atividades domésticas' },
+            { id: 'P02', desc: 'Participação social' },
+            { id: 'P03', desc: 'Participação laboral' }
+          ],
+          detalhes: {
+            'P01': { especifico: 'Dificuldade em tarefas domésticas', sufixo: 'Q' },
+            'P02': { especifico: 'Isolamento social', sufixo: 'R' },
+            'P03': { especifico: 'Incapacidade para o trabalho', sufixo: 'S' }
+          }
+        }
+      };
+
+      // Elementos DOM
+      const dominioEl = document.getElementById('cbdf-dominio');
+      const codigoEl = document.getElementById('cbdf-codigo');
+      const statusEl = document.getElementById('cbdf-status');
+      const detalheEl = document.getElementById('cbdf-detalhe');
+      const btnBuscar = document.getElementById('cbdf-buscar');
+      const btnLimpar = document.getElementById('cbdf-limpar');
+      const codigoCompletoEl = document.getElementById('cbdf-codigo-completo');
+      const descricaoEl = document.getElementById('cbdf-descricao');
+      const detalhesEl = document.getElementById('cbdf-detalhes');
+      const severidadeContainer = document.getElementById('cbdf-severidade-container');
+
+      // Função para popular códigos baseado no domínio
+      function popularCodigos() {
+        const dominio = dominioEl.value;
+        codigoEl.innerHTML = '<option value="">Selecione o código</option>';
+        codigoEl.disabled = true;
+        statusEl.disabled = true;
+        detalheEl.disabled = true;
+        statusEl.value = '';
+        detalheEl.value = '';
+
+        if (dominio && baseDados[dominio]) {
+          const dados = baseDados[dominio];
+          dados.codigos.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = `${c.id} - ${c.desc}`;
+            codigoEl.appendChild(opt);
+          });
+          codigoEl.disabled = false;
+        }
+        limparResultado();
+      }
+
+      // Função para habilitar status e detalhe
+      function habilitarProximos() {
+        if (codigoEl.value) {
+          statusEl.disabled = false;
+        } else {
+          statusEl.disabled = true;
+          detalheEl.disabled = true;
+          statusEl.value = '';
+          detalheEl.value = '';
+        }
+        if (statusEl.value) {
+          detalheEl.disabled = false;
+        } else {
+          detalheEl.disabled = true;
+          detalheEl.value = '';
+        }
+        limparResultado();
+      }
+
+      // Função para gerar diagnóstico
+      function gerarDiagnostico() {
+        const dominio = dominioEl.value;
+        const codigo = codigoEl.value;
+        const status = statusEl.value;
+        const detalhe = detalheEl.value;
+
+        if (!dominio || !codigo || !status || !detalhe) {
+          alert('Por favor, preencha todos os campos (Domínio, Código, Status e Detalhe) para buscar o diagnóstico.');
+          return;
+        }
+
+        // Buscar dados
+        const dadosDominio = baseDados[dominio];
+        const codigoInfo = dadosDominio.codigos.find(c => c.id === codigo);
+        const detalheInfo = dadosDominio.detalhes[codigo];
+
+        if (!codigoInfo || !detalheInfo) {
+          alert('Código ou detalhe não encontrado.');
+          return;
+        }
+
+        // Montar código CBDF-1
+        const codigoBase = codigo;
+        const sufixo = detalheInfo.sufixo;
+        const statusMap = { 'Leve': '1', 'Moderado': '2', 'Grave': '3' };
+        const statusNum = statusMap[status] || '0';
+        const codigoCompleto = `${codigoBase}.${statusNum}.${sufixo}.1.0.0`; // Exemplo: S01.2.A.1.0.0
+
+        // Montar descrição
+        const descricao = `${codigoInfo.id} - ${codigoInfo.desc} | ${status} | ${detalheInfo.especifico} | ${dominio} | Detalhe ${detalhe}`;
+
+        // Atualizar UI
+        codigoCompletoEl.textContent = codigoCompleto;
+        descricaoEl.textContent = descricao;
+        detalhesEl.textContent = `Domínio: ${dominio} | Código: ${codigoInfo.desc} | Status: ${status} | Especificação: ${detalheInfo.especifico}`;
+
+        // Severidade
+        let sevClasse = 'sev-moderado';
+        let sevTexto = 'Moderado';
+        if (status === 'Leve') { sevClasse = 'sev-leve'; sevTexto = 'Leve'; }
+        else if (status === 'Grave') { sevClasse = 'sev-grave'; sevTexto = 'Grave'; }
+        severidadeContainer.innerHTML = `<span class="severity-badge ${sevClasse}">Nível de gravidade: ${sevTexto}</span>`;
+      }
+
+      function limparResultado() {
+        codigoCompletoEl.textContent = 'Aguardar seleção';
+        descricaoEl.textContent = 'Aguardar seleção';
+        detalhesEl.textContent = '';
+        severidadeContainer.innerHTML = '';
+      }
+
+      // Event listeners
+      dominioEl.addEventListener('change', function() {
+        popularCodigos();
+        habilitarProximos();
+      });
+
+      codigoEl.addEventListener('change', function() {
+        habilitarProximos();
+      });
+
+      statusEl.addEventListener('change', function() {
+        habilitarProximos();
+        // Se status e codigo estiverem preenchidos, habilita detalhe
+        if (this.value) {
+          detalheEl.disabled = false;
+        } else {
+          detalheEl.disabled = true;
+          detalheEl.value = '';
+        }
+        limparResultado();
+      });
+
+      detalheEl.addEventListener('change', function() {
+        limparResultado();
+      });
+
+      btnBuscar.addEventListener('click', gerarDiagnostico);
+
+      btnLimpar.addEventListener('click', function() {
+        dominioEl.value = '';
+        codigoEl.innerHTML = '<option value="">Selecione o código</option>';
+        codigoEl.disabled = true;
+        statusEl.value = '';
+        statusEl.disabled = true;
+        detalheEl.value = '';
+        detalheEl.disabled = true;
+        limparResultado();
+      });
+
+      // Inicialização
+      popularCodigos();
+      habilitarProximos();
+    })();
+  </script>
+</body>
+</html>

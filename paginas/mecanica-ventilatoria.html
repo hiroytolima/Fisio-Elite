@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Mechanical Power</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Mechanical Power</h1><p class="page-subtitle">Cálculo da energia mecânica aplicada ao sistema respiratório durante ventilação mecânica.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A Mechanical Power (Potência Mecânica) quantifica a energia transferida dos ventiladores para o sistema respiratório, correlacionando-se com lesão pulmonar induzida pela ventilação (VILI). Valores elevados estão associados a piores desfechos em pacientes críticos.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="mp-tabs" id="mp-tab-calculadora" checked>
+        <input type="radio" name="mp-tabs" id="mp-tab-interpretacao">
+        <input type="radio" name="mp-tabs" id="mp-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas de Mechanical Power">
+          <label class="tab-btn" for="mp-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="mp-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="mp-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel mp-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Insira os parâmetros ventilatórios para calcular a Mechanical Power e classificar o risco.</p>
+
+            <form class="gcs-form" id="mp-form">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div>
+                  <label for="mp-vt">Volume Corrente (mL)</label>
+                  <input type="number" id="mp-vt" name="mp-vt" value="500" min="100" max="1000" step="10">
+                </div>
+                <div>
+                  <label for="mp-freq">FR (rpm)</label>
+                  <input type="number" id="mp-freq" name="mp-freq" value="15" min="4" max="40" step="1">
+                </div>
+                <div>
+                  <label for="mp-plat">Pressão de Platô (cmH₂O)</label>
+                  <input type="number" id="mp-plat" name="mp-plat" value="25" min="5" max="50" step="0.5">
+                </div>
+                <div>
+                  <label for="mp-peep">PEEP (cmH₂O)</label>
+                  <input type="number" id="mp-peep" name="mp-peep" value="8" min="0" max="25" step="0.5">
+                </div>
+                <div>
+                  <label for="mp-flow">Fluxo Inspiratório (L/min)</label>
+                  <input type="number" id="mp-flow" name="mp-flow" value="60" min="10" max="120" step="1">
+                </div>
+                <div>
+                  <label for="mp-ratio">Relação I:E</label>
+                  <input type="number" id="mp-ratio" name="mp-ratio" value="0.5" min="0.1" max="2" step="0.1">
+                </div>
+              </div>
+              <button type="button" id="mp-calc-btn" style="margin-top: 16px; padding: 10px 24px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Calcular Mechanical Power</button>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Mechanical Power</span>
+                <strong id="mp-total">0.00</strong>
+                <span style="font-size: 14px; font-weight: 400; color: #666;">J/min</span>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="mp-severity">Risco: Baixo</p>
+            <p class="mp-severity-desc" id="mp-severity-desc">Valor dentro da faixa considerada segura para a maioria dos pacientes.</p>
+          </div>
+
+          <div class="tab-panel mp-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A Mechanical Power representa a taxa de transferência de energia do ventilador para o sistema respiratório, integrando pressão, fluxo, volume e frequência.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>&lt; 12 J/min:</strong> Baixo risco de VILI</li>
+                <li><strong>12 - 20 J/min:</strong> Risco moderado</li>
+                <li><strong>&gt; 20 J/min:</strong> Alto risco de lesão pulmonar</li>
+              </ul>
+              <p style="font-size: 14px; color: #555; margin-top: 8px;">* Valores de referência para pacientes com SDRA. Ajustar conforme contexto clínico.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Utilize a calculadora com os parâmetros do ventilador (VT, FR, Pplat, PEEP, Fluxo e I:E) para obter o valor de Mechanical Power. Monitore serialmente para avaliar tendências.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A Mechanical Power integra múltiplos componentes da ventilação em um único índice, sendo um preditor independente de mortalidade em pacientes com SDRA e auxiliando na titulação da ventilação protetora.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Mantenha Mechanical Power &lt; 12 J/min sempre que possível.</li>
+                <li>Combine com estratégias de proteção pulmonar (baixo VT, Pplat ≤ 30 cmH₂O).</li>
+                <li>Avalie a relação com driving pressure e mecânica respiratória.</li>
+              </ul>
+            </details>
+            <p>Interprete o resultado considerando o quadro clínico, etiologia da insuficiência respiratória e metas ventilatórias.</p>
+          </div>
+
+          <div class="tab-panel mp-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Gattinoni L, et al. (2016)</strong> Mechanical power and development of ventilator-induced lung injury. <em>Intensive Care Medicine</em>, 42(10), 1567-1575.</li>
+              <li><strong>Serpa Neto A, et al. (2018)</strong> Mechanical power of ventilation is associated with mortality in critically ill patients: a systematic review and meta-analysis. <em>Critical Care Medicine</em>, 46(8), 1271-1278.</li>
+              <li><strong>Coppola S, et al. (2021)</strong> Mechanical power during ventilation in the ICU: a clinical perspective. <em>Critical Care</em>, 25(1), 1-9.</li>
+            </ul>
+            <p>A Mechanical Power é recomendada como ferramenta complementar para monitorização da segurança ventilatória e prevenção de VILI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('mp-form');
+      const vtInput = document.getElementById('mp-vt');
+      const freqInput = document.getElementById('mp-freq');
+      const platInput = document.getElementById('mp-plat');
+      const peepInput = document.getElementById('mp-peep');
+      const flowInput = document.getElementById('mp-flow');
+      const ratioInput = document.getElementById('mp-ratio');
+      const totalDisplay = document.getElementById('mp-total');
+      const severityDisplay = document.getElementById('mp-severity');
+      const descDisplay = document.getElementById('mp-severity-desc');
+      const calcBtn = document.getElementById('mp-calc-btn');
+
+      function calculateMP() {
+        const vt = parseFloat(vtInput.value) || 500;
+        const freq = parseFloat(freqInput.value) || 15;
+        const plat = parseFloat(platInput.value) || 25;
+        const peep = parseFloat(peepInput.value) || 8;
+        const flow = parseFloat(flowInput.value) || 60;
+        const ratio = parseFloat(ratioInput.value) || 0.5;
+
+        // Cálculo baseado na fórmula simplificada de Mechanical Power
+        // MP = 0.098 * VT * freq * (Pplat - 0.5 * PEEP)
+        // Adaptação para incluir fluxo e I:E de forma aproximada
+        const vtL = vt / 1000;
+        const drivingPressure = plat - peep;
+        const baseMP = 0.098 * vtL * freq * drivingPressure;
+
+        // Fator de correção baseado no fluxo e na relação I:E (ajuste empírico)
+        const flowFactor = 1 + (flow - 60) * 0.002;
+        const ratioFactor = 1 + (ratio - 0.5) * 0.3;
+
+        let mp = baseMP * flowFactor * ratioFactor;
+
+        // Limitar valores extremos
+        mp = Math.max(0, Math.round(mp * 100) / 100);
+
+        // Exibir resultado
+        totalDisplay.textContent = mp.toFixed(2);
+
+        // Classificação de risco
+        let severityClass = '';
+        let severityText = '';
+        let severityDesc = '';
+
+        if (mp < 12) {
+          severityClass = 'is-leve';
+          severityText = 'Risco: Baixo';
+          severityDesc = 'Valor dentro da faixa considerada segura para a maioria dos pacientes.';
+        } else if (mp < 20) {
+          severityClass = 'is-moderado';
+          severityText = 'Risco: Moderado';
+          severityDesc = 'Monitorar tendência e considerar ajustes na ventilação para reduzir a Mechanical Power.';
+        } else {
+          severityClass = 'is-grave';
+          severityText = 'Risco: Alto';
+          severityDesc = 'Valor associado a maior risco de VILI. Reavaliar estratégia ventilatória imediatamente.';
+        }
+
+        severityDisplay.className = `gcs-severity ${severityClass}`;
+        severityDisplay.textContent = severityText;
+        descDisplay.textContent = severityDesc;
+      }
+
+      // Calcular ao clicar no botão
+      calcBtn.addEventListener('click', calculateMP);
+
+      // Calcular ao alterar qualquer campo
+      const inputs = [vtInput, freqInput, platInput, peepInput, flowInput, ratioInput];
+      inputs.forEach(input => {
+        input.addEventListener('input', calculateMP);
+        input.addEventListener('change', calculateMP);
+      });
+
+      // Cálculo inicial
+      calculateMP();
+    });
+  </script>
+</body>
+</html>

@@ -63,28 +63,9 @@
   }
 
   function bindLinks() {
-    var links = document.querySelectorAll("a[href]");
-
-    links.forEach(function (link) {
-      if (link.dataset.routerBound === "true") {
-        return;
-      }
-
-      link.dataset.routerBound = "true";
-      link.addEventListener("click", function (event) {
-        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-          return;
-        }
-
-        if (!isInternalHtmlLink(link)) {
-          return;
-        }
-
-        var targetUrl = new URL(link.getAttribute("href"), window.location.href);
-        event.preventDefault();
-        navigate(targetUrl.pathname, false);
-      });
-    });
+    // Cada página possui seus próprios scripts de cálculo. A navegação normal
+    // do navegador garante que esses scripts sejam carregados e inicializados.
+    // Não interceptar os links evita abrir páginas com calculadoras inativas.
   }
 
   function replaceFrame(newFrame) {
@@ -298,6 +279,122 @@
     form.addEventListener("input", updateDrivingPressure);
     form.addEventListener("change", updateDrivingPressure);
     updateDrivingPressure();
+  }
+
+  function initHacorCalculator() {
+    var form = document.getElementById("hacor-form");
+    if (!form) {
+      return;
+    }
+
+    var fields = ["hacor-hr", "hacor-ph", "hacor-gcs", "hacor-spo2", "hacor-rr"].map(function (id) {
+      return document.getElementById(id);
+    });
+    var totalEl = document.getElementById("hacor-total");
+    var severityEl = document.getElementById("hacor-severity");
+    var descriptionEl = document.getElementById("hacor-severity-desc");
+
+    if (fields.some(function (field) { return !field; }) || !totalEl || !severityEl || !descriptionEl) {
+      return;
+    }
+
+    function updateHacor() {
+      var total = fields.reduce(function (sum, field) {
+        return sum + (parseInt(field.value, 10) || 0);
+      }, 0);
+
+      totalEl.textContent = String(total);
+      severityEl.classList.remove("is-grave", "is-moderado", "is-leve");
+
+      if (total >= 8) {
+        severityEl.classList.add("is-grave");
+        severityEl.textContent = "Alto risco de falha da VNI";
+        descriptionEl.textContent = "Escore ≥ 8: reavaliar imediatamente a resposta à VNI e discutir suporte ventilatório invasivo conforme o contexto clínico.";
+      } else if (total >= 5) {
+        severityEl.classList.add("is-moderado");
+        severityEl.textContent = "Risco moderado de falha da VNI";
+        descriptionEl.textContent = "Escore entre 5 e 7: manter monitorização rigorosa e reavaliar o paciente em curto intervalo.";
+      } else {
+        severityEl.classList.add("is-leve");
+        severityEl.textContent = "Baixo risco de falha da VNI";
+        descriptionEl.textContent = "Escore entre 0 e 4: manter monitorização clínica e reavaliar a resposta ao tratamento.";
+      }
+    }
+
+    form.addEventListener("change", updateHacor);
+    updateHacor();
+  }
+
+  function initPeepCalculator() {
+    var form = document.getElementById("peep-form");
+    if (!form) {
+      return;
+    }
+
+    var get = function (id) { return document.getElementById(id); };
+    var sexo = get("peep-sexo");
+    var altura = get("peep-altura");
+    var volume = get("peep-volume");
+    var peep = get("peep-peep");
+    var plato = get("peep-plato");
+    var pao2 = get("peep-pao2");
+    var fio2 = get("peep-fio2");
+    var vtKgEl = get("peep-peso-predito");
+    var drivingEl = get("peep-driving-result");
+    var cestEl = get("peep-cest-result");
+    var ratioEl = get("peep-ratio");
+    var pfEl = get("peep-pf-ratio");
+    var statusEl = get("peep-status");
+    var statusDescEl = get("peep-status-desc");
+
+    if (!sexo || !altura || !volume || !peep || !plato || !pao2 || !fio2 || !vtKgEl || !drivingEl || !cestEl || !ratioEl || !pfEl || !statusEl || !statusDescEl) {
+      return;
+    }
+
+    function valueOf(input) {
+      var value = parseFloat(String(input.value).replace(",", "."));
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function updatePeep() {
+      var alturaCm = valueOf(altura);
+      var volumeMl = valueOf(volume);
+      var peepValue = valueOf(peep);
+      var platoValue = valueOf(plato);
+      var pao2Value = valueOf(pao2);
+      var fio2Value = valueOf(fio2);
+      var pesoPredito = (sexo.value === "feminino" ? 45.5 : 50) + (0.91 * (alturaCm - 152.4));
+      var vtKg = pesoPredito > 0 ? volumeMl / pesoPredito : 0;
+      var driving = Math.max(0, platoValue - peepValue);
+      var cest = driving > 0 ? volumeMl / driving : 0;
+      var peepPlato = platoValue > 0 ? peepValue / platoValue : 0;
+      var pf = fio2Value > 0 ? pao2Value / (fio2Value / 100) : 0;
+
+      vtKgEl.textContent = vtKg.toFixed(1);
+      drivingEl.textContent = driving.toFixed(1);
+      cestEl.textContent = cest.toFixed(1);
+      ratioEl.textContent = peepPlato.toFixed(2);
+      pfEl.textContent = pf.toFixed(0);
+      statusEl.classList.remove("is-grave", "is-moderado", "is-leve");
+
+      if (driving > 15 || platoValue > 30 || vtKg > 8 || pf < 150) {
+        statusEl.classList.add("is-grave");
+        statusEl.textContent = "Parâmetros exigem reavaliação";
+        statusDescEl.textContent = "Há valor fora das metas protetoras. Reavalie individualmente volume corrente, PEEP, pressões e oxigenação no contexto clínico.";
+      } else if (driving > 12 || vtKg > 6 || pf < 300) {
+        statusEl.classList.add("is-moderado");
+        statusEl.textContent = "Atenção aos parâmetros ventilatórios";
+        statusDescEl.textContent = "Mantenha monitorização e considere ajustes graduais conforme mecânica respiratória, oxigenação e hemodinâmica.";
+      } else {
+        statusEl.classList.add("is-leve");
+        statusEl.textContent = "Parâmetros dentro das metas usuais";
+        statusDescEl.textContent = "Driving pressure, pressão de platô e volume corrente estão dentro de metas protetoras usuais. Continue reavaliando clinicamente.";
+      }
+    }
+
+    form.addEventListener("input", updatePeep);
+    form.addEventListener("change", updatePeep);
+    updatePeep();
   }
 
   function initGasometriaCalculator() {
@@ -684,6 +781,8 @@
         initGlasgowCalculator();
         initRassCalculator();
         initDrivingPressureCalculator();
+        initHacorCalculator();
+        initPeepCalculator();
         initGasometriaCalculator();
         initCifPage();
         initCiap2Page();
@@ -704,6 +803,8 @@
   initGlasgowCalculator();
   initRassCalculator();
   initDrivingPressureCalculator();
+  initHacorCalculator();
+  initPeepCalculator();
   initGasometriaCalculator();
   initCifPage();
   initCiap2Page();

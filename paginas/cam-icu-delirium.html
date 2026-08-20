@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | CAM-ICU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">CAM-ICU</h1><p class="page-subtitle">Instrumento validado para diagnóstico de delirium em pacientes críticos.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A CAM-ICU (Confusion Assessment Method for the Intensive Care Unit) é um instrumento rápido e validado para rastreamento de delirium em pacientes não comunicativos ou sob ventilação mecânica.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="cam-tabs" id="cam-tab-calculadora" checked>
+        <input type="radio" name="cam-tabs" id="cam-tab-interpretacao">
+        <input type="radio" name="cam-tabs" id="cam-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da CAM-ICU">
+          <label class="tab-btn" for="cam-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="cam-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="cam-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel cam-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Selecione a resposta para cada um dos 4 critérios da CAM-ICU.</p>
+
+            <form class="gcs-form" id="cam-form">
+              <div style="margin-bottom: 16px;">
+                <label><strong>Característica 1: Início agudo ou flutuação do curso</strong></label>
+                <select id="cam-feature1" name="cam-feature1" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-top:4px;">
+                  <option value="0">Ausente</option>
+                  <option value="1">Presente</option>
+                </select>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label><strong>Característica 2: Desatenção</strong></label>
+                <select id="cam-feature2" name="cam-feature2" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-top:4px;">
+                  <option value="0">Ausente</option>
+                  <option value="1">Presente</option>
+                </select>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label><strong>Característica 3: Nível de consciência alterado</strong></label>
+                <select id="cam-feature3" name="cam-feature3" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-top:4px;">
+                  <option value="0">Ausente</option>
+                  <option value="1">Presente</option>
+                </select>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label><strong>Característica 4: Pensamento desorganizado</strong></label>
+                <select id="cam-feature4" name="cam-feature4" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-top:4px;">
+                  <option value="0">Ausente</option>
+                  <option value="1">Presente</option>
+                </select>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>CAM-ICU</span>
+                <strong id="cam-resultado">Negativo</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="cam-severity">Delirium: Ausente</p>
+            <p class="cam-severity-desc" id="cam-severity-desc">Paciente sem critérios para delirium segundo a CAM-ICU.</p>
+          </div>
+
+          <div class="tab-panel cam-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A CAM-ICU é composta por 4 características: (1) início agudo ou flutuação do curso, (2) desatenção, (3) nível de consciência alterado e (4) pensamento desorganizado.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>CRITÉRIOS PARA DELIRIUM</summary>
+              <ul class="gcs-list">
+                <li><strong>Delirium positivo:</strong> Característica 1 + Característica 2 + (Característica 3 ou 4) presentes.</li>
+                <li><strong>Delirium negativo:</strong> Ausência da combinação acima.</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO APLICAR</summary>
+              <p>O paciente deve estar acordado ou com sedação leve. As características são avaliadas por meio de observação clínica e testes breves de atenção (ex.: letras) e perguntas simples.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A CAM-ICU permite identificar precocemente o delirium, condição subdiagnosticada em UTI, associada a maior morbimortalidade, tempo de internação e declínio cognitivo.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Aplicar diariamente em todos os pacientes críticos.</li>
+                <li>Registrar o resultado e comunicar à equipe multiprofissional.</li>
+                <li>Investigar causas subjacentes em caso de positividade.</li>
+              </ul>
+            </details>
+            <p>Interprete o resultado em conjunto com o quadro clínico e fatores de risco.</p>
+          </div>
+
+          <div class="tab-panel cam-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Ely EW, et al. (2001)</strong> Delirium in mechanically ventilated patients: validity and reliability of the confusion assessment method for the intensive care unit (CAM-ICU). <em>JAMA</em>, 286(21), 2703-2710.</li>
+              <li><strong>Inouye SK, et al. (1990)</strong> Clarifying confusion: the confusion assessment method. A new method for detection of delirium. <em>Annals of Internal Medicine</em>, 113(12), 941-948.</li>
+              <li><strong>Gusmao-Flores D, et al. (2012)</strong> The CAM-ICU has good diagnostic accuracy for detecting delirium in ICU patients: a systematic review. <em>Intensive Care Medicine</em>, 38(9), 1435-1445.</li>
+            </ul>
+            <p>A CAM-ICU é recomendada por diretrizes internacionais e considerada padrão-ouro para rastreamento de delirium em UTI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script>
+    // Script funcional para a calculadora CAM-ICU
+    document.addEventListener('DOMContentLoaded', function() {
+      const feature1 = document.getElementById('cam-feature1');
+      const feature2 = document.getElementById('cam-feature2');
+      const feature3 = document.getElementById('cam-feature3');
+      const feature4 = document.getElementById('cam-feature4');
+      const resultado = document.getElementById('cam-resultado');
+      const severity = document.getElementById('cam-severity');
+      const severityDesc = document.getElementById('cam-severity-desc');
+
+      function atualizarResultado() {
+        const f1 = parseInt(feature1.value);
+        const f2 = parseInt(feature2.value);
+        const f3 = parseInt(feature3.value);
+        const f4 = parseInt(feature4.value);
+
+        const positivo = (f1 === 1 && f2 === 1 && (f3 === 1 || f4 === 1));
+
+        if (positivo) {
+          resultado.textContent = 'Positivo';
+          resultado.style.color = '#d32f2f';
+          severity.textContent = 'Delirium: Presente';
+          severity.className = 'gcs-severity is-grave';
+          severityDesc.textContent = 'Paciente com delirium segundo os critérios da CAM-ICU. Recomenda-se investigação etiológica e manejo multimodal.';
+        } else {
+          resultado.textContent = 'Negativo';
+          resultado.style.color = '#2e7d32';
+          severity.textContent = 'Delirium: Ausente';
+          severity.className = 'gcs-severity is-leve';
+          severityDesc.textContent = 'Paciente sem critérios para delirium segundo a CAM-ICU. Manter monitoramento diário.';
+        }
+      }
+
+      feature1.addEventListener('change', atualizarResultado);
+      feature2.addEventListener('change', atualizarResultado);
+      feature3.addEventListener('change', atualizarResultado);
+      feature4.addEventListener('change', atualizarResultado);
+
+      // Inicializa
+      atualizarResultado();
+    });
+  </script>
+</body>
+</html>

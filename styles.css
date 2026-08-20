@@ -899,6 +899,87 @@ body{
   display:block;
 }
 
+/* Abas das calculadoras e escalas adicionais. */
+#cbdf-tab-classificacao:checked ~ .tab-content .cbdf-panel-classificacao,
+#cbdf-tab-interpretacao:checked ~ .tab-content .cbdf-panel-interpretacao,
+#cbdf-tab-evidencias:checked ~ .tab-content .cbdf-panel-evidencias,
+#pf-tab-calculadora:checked ~ .tab-content .pf-panel-calculadora,
+#pf-tab-interpretacao:checked ~ .tab-content .pf-panel-interpretacao,
+#pf-tab-evidencias:checked ~ .tab-content .pf-panel-evidencias,
+#perme-tab-calculadora:checked ~ .tab-content .perme-panel-calculadora,
+#perme-tab-interpretacao:checked ~ .tab-content .perme-panel-interpretacao,
+#perme-tab-evidencias:checked ~ .tab-content .perme-panel-evidencias,
+#sofa-tab-calculadora:checked ~ .tab-content .sofa-panel-calculadora,
+#sofa-tab-interpretacao:checked ~ .tab-content .sofa-panel-interpretacao,
+#sofa-tab-evidencias:checked ~ .tab-content .sofa-panel-evidencias,
+#cam-tab-calculadora:checked ~ .tab-content .cam-panel-calculadora,
+#cam-tab-interpretacao:checked ~ .tab-content .cam-panel-interpretacao,
+#cam-tab-evidencias:checked ~ .tab-content .cam-panel-evidencias,
+#four-tab-calculadora:checked ~ .tab-content .four-panel-calculadora,
+#four-tab-interpretacao:checked ~ .tab-content .four-panel-interpretacao,
+#four-tab-evidencias:checked ~ .tab-content .four-panel-evidencias,
+#hacor-tab-calculadora:checked ~ .tab-content .hacor-panel-calculadora,
+#hacor-tab-interpretacao:checked ~ .tab-content .hacor-panel-interpretacao,
+#hacor-tab-evidencias:checked ~ .tab-content .hacor-panel-evidencias,
+#mrc-tab-calculadora:checked ~ .tab-content .mrc-panel-calculadora,
+#mrc-tab-interpretacao:checked ~ .tab-content .mrc-panel-interpretacao,
+#mrc-tab-evidencias:checked ~ .tab-content .mrc-panel-evidencias,
+#rox-tab-calculadora:checked ~ .tab-content .rox-panel-calculadora,
+#rox-tab-interpretacao:checked ~ .tab-content .rox-panel-interpretacao,
+#rox-tab-evidencias:checked ~ .tab-content .rox-panel-evidencias,
+#peep-tab-calculadora:checked ~ .tab-content .peep-panel-calculadora,
+#peep-tab-interpretacao:checked ~ .tab-content .peep-panel-interpretacao,
+#peep-tab-evidencias:checked ~ .tab-content .peep-panel-evidencias,
+#pv-tab-calculadora:checked ~ .tab-content .pv-panel-calculadora,
+#pv-tab-interpretacao:checked ~ .tab-content .pv-panel-interpretacao,
+#pv-tab-evidencias:checked ~ .tab-content .pv-panel-evidencias,
+#mp-tab-calculadora:checked ~ .tab-content .mp-panel-calculadora,
+#mp-tab-interpretacao:checked ~ .tab-content .mp-panel-interpretacao,
+#mp-tab-evidencias:checked ~ .tab-content .mp-panel-evidencias{
+  display:block;
+}
+
+#cbdf-tab-classificacao:checked ~ .tab-buttons label[for="cbdf-tab-classificacao"],
+#cbdf-tab-interpretacao:checked ~ .tab-buttons label[for="cbdf-tab-interpretacao"],
+#cbdf-tab-evidencias:checked ~ .tab-buttons label[for="cbdf-tab-evidencias"],
+#pf-tab-calculadora:checked ~ .tab-buttons label[for="pf-tab-calculadora"],
+#pf-tab-interpretacao:checked ~ .tab-buttons label[for="pf-tab-interpretacao"],
+#pf-tab-evidencias:checked ~ .tab-buttons label[for="pf-tab-evidencias"],
+#perme-tab-calculadora:checked ~ .tab-buttons label[for="perme-tab-calculadora"],
+#perme-tab-interpretacao:checked ~ .tab-buttons label[for="perme-tab-interpretacao"],
+#perme-tab-evidencias:checked ~ .tab-buttons label[for="perme-tab-evidencias"],
+#sofa-tab-calculadora:checked ~ .tab-buttons label[for="sofa-tab-calculadora"],
+#sofa-tab-interpretacao:checked ~ .tab-buttons label[for="sofa-tab-interpretacao"],
+#sofa-tab-evidencias:checked ~ .tab-buttons label[for="sofa-tab-evidencias"],
+#cam-tab-calculadora:checked ~ .tab-buttons label[for="cam-tab-calculadora"],
+#cam-tab-interpretacao:checked ~ .tab-buttons label[for="cam-tab-interpretacao"],
+#cam-tab-evidencias:checked ~ .tab-buttons label[for="cam-tab-evidencias"],
+#four-tab-calculadora:checked ~ .tab-buttons label[for="four-tab-calculadora"],
+#four-tab-interpretacao:checked ~ .tab-buttons label[for="four-tab-interpretacao"],
+#four-tab-evidencias:checked ~ .tab-buttons label[for="four-tab-evidencias"],
+#hacor-tab-calculadora:checked ~ .tab-buttons label[for="hacor-tab-calculadora"],
+#hacor-tab-interpretacao:checked ~ .tab-buttons label[for="hacor-tab-interpretacao"],
+#hacor-tab-evidencias:checked ~ .tab-buttons label[for="hacor-tab-evidencias"],
+#mrc-tab-calculadora:checked ~ .tab-buttons label[for="mrc-tab-calculadora"],
+#mrc-tab-interpretacao:checked ~ .tab-buttons label[for="mrc-tab-interpretacao"],
+#mrc-tab-evidencias:checked ~ .tab-buttons label[for="mrc-tab-evidencias"],
+#rox-tab-calculadora:checked ~ .tab-buttons label[for="rox-tab-calculadora"],
+#rox-tab-interpretacao:checked ~ .tab-buttons label[for="rox-tab-interpretacao"],
+#rox-tab-evidencias:checked ~ .tab-buttons label[for="rox-tab-evidencias"],
+#peep-tab-calculadora:checked ~ .tab-buttons label[for="peep-tab-calculadora"],
+#peep-tab-interpretacao:checked ~ .tab-buttons label[for="peep-tab-interpretacao"],
+#peep-tab-evidencias:checked ~ .tab-buttons label[for="peep-tab-evidencias"],
+#pv-tab-calculadora:checked ~ .tab-buttons label[for="pv-tab-calculadora"],
+#pv-tab-interpretacao:checked ~ .tab-buttons label[for="pv-tab-interpretacao"],
+#pv-tab-evidencias:checked ~ .tab-buttons label[for="pv-tab-evidencias"],
+#mp-tab-calculadora:checked ~ .tab-buttons label[for="mp-tab-calculadora"],
+#mp-tab-interpretacao:checked ~ .tab-buttons label[for="mp-tab-interpretacao"],
+#mp-tab-evidencias:checked ~ .tab-buttons label[for="mp-tab-evidencias"]{
+  background:var(--teal);
+  border-color:var(--teal);
+  color:#fff;
+}
+
 .page-card + .page-card{
   margin-top: 12px;
 }

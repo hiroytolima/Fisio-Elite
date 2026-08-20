@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Perme Score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Perme Score</h1><p class="page-subtitle">Avaliação da mobilidade funcional em pacientes críticos.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>O Perme Intensive Care Unit Mobility Score (Perme Score) é um instrumento específico para avaliar o nível de mobilidade de pacientes internados em UTI, considerando desde o repouso no leito até a deambulação.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="perme-tabs" id="perme-tab-calculadora" checked>
+        <input type="radio" name="perme-tabs" id="perme-tab-interpretacao">
+        <input type="radio" name="perme-tabs" id="perme-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas do Perme Score">
+          <label class="tab-btn" for="perme-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="perme-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="perme-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel perme-panel-calculadora">
+            <h2>Instrumento de avaliação da mobilidade.</h2>
+            <p>Selecione a pontuação para cada item e obtenha o escore total do Perme Score.</p>
+
+            <form class="gcs-form" id="perme-form">
+              <!-- Item 1: Nível de consciência -->
+              <div class="perme-item">
+                <label for="perme-consciencia">1. Nível de consciência</label>
+                <select id="perme-consciencia" name="perme-consciencia">
+                  <option value="0">0 - Não responsivo</option>
+                  <option value="1" selected>1 - Responsivo a estímulos</option>
+                  <option value="2">2 - Alerta e orientado</option>
+                </select>
+              </div>
+
+              <!-- Item 2: Suporte ventilatório -->
+              <div class="perme-item">
+                <label for="perme-ventilacao">2. Suporte ventilatório</label>
+                <select id="perme-ventilacao" name="perme-ventilacao">
+                  <option value="0">0 - Ventilação mecânica (VM)</option>
+                  <option value="2" selected>2 - VM com tubo T ou traqueostomia</option>
+                  <option value="3">3 - Oxigenoterapia de baixo fluxo</option>
+                  <option value="4">4 - Sem suporte ventilatório</option>
+                </select>
+              </div>
+
+              <!-- Item 3: Força muscular -->
+              <div class="perme-item">
+                <label for="perme-forca">3. Força muscular (MMSS e MMII)</label>
+                <select id="perme-forca" name="perme-forca">
+                  <option value="0">0 - Sem contração (0/5)</option>
+                  <option value="1">1 - Contração visível (1/5)</option>
+                  <option value="2" selected>2 - Movimento ativo (2/5 a 3/5)</option>
+                  <option value="3">3 - Força normal (4/5 a 5/5)</option>
+                </select>
+              </div>
+
+              <!-- Item 4: Mobilidade no leito -->
+              <div class="perme-item">
+                <label for="perme-mobilidade">4. Mobilidade no leito</label>
+                <select id="perme-mobilidade" name="perme-mobilidade">
+                  <option value="0">0 - Imóvel (sem mudança de decúbito)</option>
+                  <option value="1">1 - Mudança de decúbito passiva</option>
+                  <option value="2" selected>2 - Mudança de decúbito ativa</option>
+                  <option value="3">3 - Sentado na beira do leito</option>
+                </select>
+              </div>
+
+              <!-- Item 5: Transferência -->
+              <div class="perme-item">
+                <label for="perme-transferencia">5. Transferência (leito → poltrona/cadeira)</label>
+                <select id="perme-transferencia" name="perme-transferencia">
+                  <option value="0">0 - Não realiza</option>
+                  <option value="1">1 - Com auxílio de 2 pessoas</option>
+                  <option value="2" selected>2 - Com auxílio de 1 pessoa</option>
+                  <option value="3">3 - Independente</option>
+                </select>
+              </div>
+
+              <!-- Item 6: Marcha -->
+              <div class="perme-item">
+                <label for="perme-marcha">6. Marcha (deambulação)</label>
+                <select id="perme-marcha" name="perme-marcha">
+                  <option value="0">0 - Não deambula</option>
+                  <option value="1">1 - Com auxílio de 2 pessoas</option>
+                  <option value="2" selected>2 - Com auxílio de 1 pessoa</option>
+                  <option value="3">3 - Independente</option>
+                </select>
+              </div>
+
+              <!-- Item 7: Equilíbrio e endurance -->
+              <div class="perme-item">
+                <label for="perme-equilibrio">7. Equilíbrio e endurance</label>
+                <select id="perme-equilibrio" name="perme-equilibrio">
+                  <option value="0">0 - Incapaz de permanecer em pé</option>
+                  <option value="1">1 - Fica em pé com apoio</option>
+                  <option value="2" selected>2 - Fica em pé sem apoio</option>
+                  <option value="3">3 - Deambula > 15 metros</option>
+                </select>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Perme Score</span>
+                <strong id="perme-total">0</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="perme-severity">Nível de mobilidade: Independente</p>
+            <p class="perme-severity-desc" id="perme-severity-desc">Paciente com alta capacidade funcional e deambulação independente.</p>
+          </div>
+
+          <div class="tab-panel perme-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>O Perme Score é uma escala de 7 itens que avalia a mobilidade funcional em pacientes críticos. A pontuação total varia de 0 (imobilidade completa) a 24 (mobilidade independente).</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>0 - 6:</strong> Mobilidade muito limitada (dependente)</li>
+                <li><strong>7 - 12:</strong> Mobilidade moderada (necessita de auxílio)</li>
+                <li><strong>13 - 18:</strong> Mobilidade parcialmente independente</li>
+                <li><strong>19 - 24:</strong> Mobilidade independente</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Observe o paciente durante as atividades de rotina na UTI (mudança de decúbito, transferência, deambulação). Atribua a pontuação de cada item com base na capacidade funcional observada no momento da avaliação.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Porque o Perme Score fornece uma medida objetiva e padronizada da mobilidade, auxiliando na prescrição de intervenções precoces de fisioterapia e na prevenção de complicações associadas à imobilidade prolongada.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Aplicar a escala diariamente para monitorar a evolução funcional.</li>
+                <li>Registrar o escore total e a pontuação de cada item no prontuário.</li>
+                <li>Interpretar o resultado em conjunto com o plano terapêutico e a evolução clínica.</li>
+              </ul>
+            </details>
+            <p>Interprete junto ao contexto clínico, níveis de sedação e objetivos de mobilização precoce.</p>
+          </div>
+
+          <div class="tab-panel perme-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Perme C, et al. (2015)</strong> Development and validation of the Perme Intensive Care Unit Mobility Score. <em>Intensive and Critical Care Nursing</em>, 31(6), 353-360.</li>
+              <li><strong>Nydahl P, et al. (2017)</strong> The Perme Score: a systematic review. <em>Critical Care</em>, 21(1), 1-9.</li>
+            </ul>
+            <p>O Perme Score é recomendado para avaliar a mobilidade funcional em UTI e direcionar estratégias de mobilização precoce, com boa confiabilidade e validade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+  <script>
+    // Script para tornar a calculadora funcional
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('perme-form');
+      const totalSpan = document.getElementById('perme-total');
+      const severityP = document.getElementById('perme-severity');
+      const descP = document.getElementById('perme-severity-desc');
+
+      // Itens do Perme Score com seus respectivos selects
+      const selects = {
+        consciencia: document.getElementById('perme-consciencia'),
+        ventilacao: document.getElementById('perme-ventilacao'),
+        forca: document.getElementById('perme-forca'),
+        mobilidade: document.getElementById('perme-mobilidade'),
+        transferencia: document.getElementById('perme-transferencia'),
+        marcha: document.getElementById('perme-marcha'),
+        equilibrio: document.getElementById('perme-equilibrio')
+      };
+
+      function calculatePermeScore() {
+        let total = 0;
+        for (let key in selects) {
+          total += parseInt(selects[key].value, 10);
+        }
+        return total;
+      }
+
+      function updateDisplay() {
+        const score = calculatePermeScore();
+        totalSpan.textContent = score;
+
+        let severity, description;
+        if (score <= 6) {
+          severity = 'Mobilidade muito limitada (dependente)';
+          description = 'Paciente com comprometimento grave da mobilidade, necessita de assistência total para as atividades.';
+        } else if (score <= 12) {
+          severity = 'Mobilidade moderada (necessita de auxílio)';
+          description = 'Paciente com limitação funcional significativa, requer auxílio para transferências e deambulação.';
+        } else if (score <= 18) {
+          severity = 'Mobilidade parcialmente independente';
+          description = 'Paciente com capacidade funcional moderada, realiza algumas atividades com supervisão ou auxílio mínimo.';
+        } else {
+          severity = 'Mobilidade independente';
+          description = 'Paciente com alta capacidade funcional e deambulação independente.';
+        }
+
+        severityP.textContent = `Nível de mobilidade: ${severity}`;
+        descP.textContent = description;
+      }
+
+      // Adiciona event listeners para todos os selects
+      for (let key in selects) {
+        selects[key].addEventListener('change', updateDisplay);
+      }
+
+      // Inicializa com valores padrão
+      updateDisplay();
+    });
+  </script>
+</body>
+</html>

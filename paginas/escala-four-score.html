@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala FOUR Score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala FOUR Score</h1><p class="page-subtitle">Avaliação do nível de consciência em quatro domínios: motora, ocular, respiratória e de tronco cerebral.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A FOUR Score (Full Outline of UnResponsiveness) varia de 0 a 16 e avalia o nível de consciência em pacientes comatosos, fornecendo mais detalhes que a Glasgow Coma Scale, especialmente em pacientes intubados.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="four-tabs" id="four-tab-calculadora" checked>
+        <input type="radio" name="four-tabs" id="four-tab-interpretacao">
+        <input type="radio" name="four-tabs" id="four-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala FOUR Score">
+          <label class="tab-btn" for="four-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="four-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="four-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel four-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Selecione a pontuação para cada domínio da FOUR Score e obtenha o escore total.</p>
+
+            <form class="gcs-form" id="four-form">
+              <div class="four-domain">
+                <label for="four-motor">Resposta Motora (0-4)</label>
+                <select id="four-motor" name="four-motor">
+                  <option value="4">4 - Segue comando</option>
+                  <option value="3">3 - Localiza dor</option>
+                  <option value="2">2 - Flexão à dor</option>
+                  <option value="1">1 - Extensão à dor</option>
+                  <option value="0">0 - Sem resposta</option>
+                </select>
+              </div>
+              <div class="four-domain">
+                <label for="four-ocular">Resposta Ocular (0-4)</label>
+                <select id="four-ocular" name="four-ocular">
+                  <option value="4">4 - Pálpebras abertas, rastreia</option>
+                  <option value="3">3 - Pálpebras abertas, não rastreia</option>
+                  <option value="2">2 - Pálpebras fechadas, abre à voz</option>
+                  <option value="1">1 - Pálpebras fechadas, abre à dor</option>
+                  <option value="0">0 - Pálpebras fechadas, não abre</option>
+                </select>
+              </div>
+              <div class="four-domain">
+                <label for="four-resp">Resposta Respiratória (0-4)</label>
+                <select id="four-resp" name="four-resp">
+                  <option value="4">4 - Respiração regular</option>
+                  <option value="3">3 - Respiração irregular</option>
+                  <option value="2">2 - Respiração de Cheyne-Stokes</option>
+                  <option value="1">1 - Respiração com drive</option>
+                  <option value="0">0 - Apneia</option>
+                </select>
+              </div>
+              <div class="four-domain">
+                <label for="four-tronco">Reflexos de Tronco (0-4)</label>
+                <select id="four-tronco" name="four-tronco">
+                  <option value="4">4 - Pupilar e corneano presentes</option>
+                  <option value="3">3 - Pupilar e corneano ausentes</option>
+                  <option value="2">2 - Pupilar ausente, corneano presente</option>
+                  <option value="1">1 - Pupilar ausente, corneano ausente</option>
+                  <option value="0">0 - Nenhum reflexo</option>
+                </select>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>FOUR Score Total</span>
+                <strong id="four-total">0</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="four-severity">Nível de consciência preservado</p>
+            <p class="four-severity-desc" id="four-severity-desc">Paciente com resposta adequada em todos os domínios.</p>
+          </div>
+
+          <div class="tab-panel four-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A FOUR Score é uma escala de 0 a 16 pontos que avalia quatro domínios: resposta motora, resposta ocular, resposta respiratória e reflexos de tronco cerebral. Cada domínio é pontuado de 0 a 4.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>13-16:</strong> Nível de consciência preservado ou levemente alterado</li>
+                <li><strong>9-12:</strong> Comprometimento moderado</li>
+                <li><strong>5-8:</strong> Comprometimento grave</li>
+                <li><strong>0-4:</strong> Coma profundo ou morte cerebral</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Avalie cada domínio separadamente: resposta motora (comandos ou estímulo doloroso), resposta ocular (abertura de pálpebras e rastreamento), resposta respiratória (padrão ventilatório) e reflexos de tronco (pupilar e corneano). Some os pontos para obter o escore total.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>Porque a FOUR Score oferece uma avaliação mais detalhada do tronco cerebral e da respiração, sendo especialmente útil em pacientes intubados ou comatosos, onde a Glasgow Coma Scale tem limitações.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Aplicar a escala de forma seriada para acompanhar a evolução neurológica.</li>
+                <li>Registrar o escore total e as pontuações individuais de cada domínio.</li>
+                <li>Interpretar o resultado em conjunto com o contexto clínico e exames complementares.</li>
+              </ul>
+            </details>
+            <p>Interprete junto ao contexto clínico, exames de imagem e evolução do paciente.</p>
+          </div>
+
+          <div class="tab-panel four-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Wijdicks EF, et al. (2005)</strong> Validation of a new coma scale: The FOUR score. <em>Annals of Neurology</em>, 58(4), 585-593.</li>
+              <li><strong>Wolf CA, et al. (2009)</strong> Predictive value of the FOUR score in a Brazilian cohort. <em>Arquivos de Neuro-Psiquiatria</em>, 67(3A), 700-703.</li>
+            </ul>
+            <p>A FOUR Score tem sido validada como uma ferramenta confiável para avaliação do nível de consciência, com boa correlação com desfechos clínicos e mortalidade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+  <script>
+    // Script para calcular automaticamente o FOUR Score
+    document.addEventListener('DOMContentLoaded', function() {
+      const motorSelect = document.getElementById('four-motor');
+      const ocularSelect = document.getElementById('four-ocular');
+      const respSelect = document.getElementById('four-resp');
+      const troncoSelect = document.getElementById('four-tronco');
+      const totalSpan = document.getElementById('four-total');
+      const severityP = document.getElementById('four-severity');
+      const descP = document.getElementById('four-severity-desc');
+
+      function updateScore() {
+        const motor = parseInt(motorSelect.value);
+        const ocular = parseInt(ocularSelect.value);
+        const resp = parseInt(respSelect.value);
+        const tronco = parseInt(troncoSelect.value);
+        const total = motor + ocular + resp + tronco;
+        totalSpan.textContent = total;
+
+        let severity, desc;
+        if (total >= 13) {
+          severity = 'Nível de consciência preservado';
+          desc = 'Paciente com resposta adequada em todos os domínios.';
+          severityP.className = 'gcs-severity is-leve';
+        } else if (total >= 9) {
+          severity = 'Comprometimento moderado';
+          desc = 'Paciente com alterações significativas, requer monitorização.';
+          severityP.className = 'gcs-severity is-moderado';
+        } else if (total >= 5) {
+          severity = 'Comprometimento grave';
+          desc = 'Paciente com grave comprometimento neurológico.';
+          severityP.className = 'gcs-severity is-grave';
+        } else {
+          severity = 'Coma profundo ou morte cerebral';
+          desc = 'Paciente com ausência de resposta em múltiplos domínios.';
+          severityP.className = 'gcs-severity is-critico';
+        }
+        severityP.textContent = severity;
+        descP.textContent = desc;
+      }
+
+      motorSelect.addEventListener('change', updateScore);
+      ocularSelect.addEventListener('change', updateScore);
+      respSelect.addEventListener('change', updateScore);
+      troncoSelect.addEventListener('change', updateScore);
+
+      // Inicializar com valores padrão
+      updateScore();
+    });
+  </script>
+</body>
+</html>

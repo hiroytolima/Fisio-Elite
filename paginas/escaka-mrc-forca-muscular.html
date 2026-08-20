@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala MRC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala MRC</h1><p class="page-subtitle">A escala MRC é um instrumento de avaliação da força muscular periféricas nos pacientes críticos. </p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A MRC (Medical Research Council) varia de 0 a 60 pontos e avalia a força muscular em seis grupos musculares bilaterais, sendo amplamente utilizada para diagnóstico de polineuromiopatia do doente crítico.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="mrc-tabs" id="mrc-tab-calculadora" checked>
+        <input type="radio" name="mrc-tabs" id="mrc-tab-interpretacao">
+        <input type="radio" name="mrc-tabs" id="mrc-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala MRC">
+          <label class="tab-btn" for="mrc-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="mrc-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="mrc-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel mrc-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Selecione o grau de força para cada grupo muscular e calcule o escore total MRC (0-60).</p>
+
+            <form class="gcs-form" id="mrc-form">
+              <div class="mrc-group">
+                <label>Membro superior direito</label>
+                <div class="mrc-row">
+                  <span>Flexão de ombro</span>
+                  <select class="mrc-select" data-group="msd" data-muscle="shoulder">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Flexão de cotovelo</span>
+                  <select class="mrc-select" data-group="msd" data-muscle="elbow">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Extensão de punho</span>
+                  <select class="mrc-select" data-group="msd" data-muscle="wrist">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mrc-group">
+                <label>Membro superior esquerdo</label>
+                <div class="mrc-row">
+                  <span>Flexão de ombro</span>
+                  <select class="mrc-select" data-group="mse" data-muscle="shoulder">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Flexão de cotovelo</span>
+                  <select class="mrc-select" data-group="mse" data-muscle="elbow">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Extensão de punho</span>
+                  <select class="mrc-select" data-group="mse" data-muscle="wrist">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mrc-group">
+                <label>Membro inferior direito</label>
+                <div class="mrc-row">
+                  <span>Flexão de quadril</span>
+                  <select class="mrc-select" data-group="mid" data-muscle="hip">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Extensão de joelho</span>
+                  <select class="mrc-select" data-group="mid" data-muscle="knee">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Flexão dorsal do tornozelo</span>
+                  <select class="mrc-select" data-group="mid" data-muscle="ankle">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mrc-group">
+                <label>Membro inferior esquerdo</label>
+                <div class="mrc-row">
+                  <span>Flexão de quadril</span>
+                  <select class="mrc-select" data-group="mie" data-muscle="hip">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Extensão de joelho</span>
+                  <select class="mrc-select" data-group="mie" data-muscle="knee">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+                <div class="mrc-row">
+                  <span>Flexão dorsal do tornozelo</span>
+                  <select class="mrc-select" data-group="mie" data-muscle="ankle">
+                    <option value="0">0 - Sem contração</option>
+                    <option value="1">1 - Contração visível</option>
+                    <option value="2">2 - Movimento sem gravidade</option>
+                    <option value="3">3 - Movimento contra gravidade</option>
+                    <option value="4" selected>4 - Movimento contra resistência moderada</option>
+                    <option value="5">5 - Movimento contra resistência máxima</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Pontuação MRC</span>
+                <strong id="mrc-total">60</strong>
+              </div>
+              <div class="gcs-result-item">
+                <span>Classificação</span>
+                <span id="mrc-classification">Força muscular normal</span>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="mrc-severity">Escore total: 60 pontos</p>
+            <p class="mrc-severity-desc" id="mrc-severity-desc">Paciente com força muscular preservada. Sem evidências de polineuromiopatia do doente crítico.</p>
+          </div>
+
+          <div class="tab-panel mrc-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>A MRC (Medical Research Council) é uma escala que avalia a força muscular em seis grupos musculares bilaterais: flexão de ombro, flexão de cotovelo, extensão de punho, flexão de quadril, extensão de joelho e flexão dorsal do tornozelo.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>48-60:</strong> Força muscular normal ou leve</li>
+                <li><strong>36-47:</strong> Fraqueza muscular moderada</li>
+                <li><strong>0-35:</strong> Fraqueza muscular grave / Polineuromiopatia do doente crítico</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Posicione o paciente em decúbito dorsal. Para cada grupo muscular, aplique resistência manual e classifique a força de 0 a 5 conforme a escala MRC. Some os escores de todos os 12 grupos avaliados (6 bilaterais).</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A escala MRC é padrão-ouro para avaliação da força muscular em UTI. Permite identificar precocemente a polineuromiopatia do doente crítico, orientar a mobilização precoce e predizer desfechos funcionais.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Realize a avaliação com o paciente acordado e colaborativo.</li>
+                <li>Aplique a escala seriadamente para monitorar evolução da força.</li>
+                <li>Escore &lt; 48 sugere fraqueza muscular e indica necessidade de intervenção fisioterapêutica.</li>
+                <li>Registre o escore total e os escores por segmento no prontuário.</li>
+              </ul>
+            </details>
+            <p>Interprete o resultado considerando o contexto clínico, tempo de internação e uso de sedativos/neuromusculares.</p>
+          </div>
+
+          <div class="tab-panel mrc-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Medical Research Council (1976)</strong> Aids to the examination of the peripheral nervous system. <em>Memorandum No. 45</em>, London: Her Majesty's Stationery Office.</li>
+              <li><strong>Hermans G, et al. (2008)</strong> Clinical review: Intensive care unit acquired weakness. <em>Critical Care</em>, 12(3), 214.</li>
+              <li><strong>Vanhorebeek I, et al. (2020)</strong> ICU-acquired weakness. <em>Intensive Care Medicine</em>, 46(4), 637-653.</li>
+              <li><strong>Parry SM, et al. (2015)</strong> The Medical Research Council Scale for muscle strength in ICU: a systematic review. <em>Critical Care Medicine</em>, 43(11), 2443-2451.</li>
+            </ul>
+            <p>A escala MRC é recomendada por diretrizes internacionais para rastreio da fraqueza muscular adquirida na UTI, com boa confiabilidade interobservador e validade prognóstica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+  <script>
+    // Script para cálculo dinâmico da pontuação MRC
+    document.addEventListener('DOMContentLoaded', function() {
+      const selects = document.querySelectorAll('.mrc-select');
+      const totalDisplay = document.getElementById('mrc-total');
+      const classificationDisplay = document.getElementById('mrc-classification');
+      const severityDisplay = document.getElementById('mrc-severity');
+      const severityDescDisplay = document.getElementById('mrc-severity-desc');
+
+      function calculateMRC() {
+        let total = 0;
+        selects.forEach(select => {
+          total += parseInt(select.value);
+        });
+
+        totalDisplay.textContent = total;
+
+        // Classificação e descrição
+        let classification, severity, description;
+        if (total >= 48) {
+          classification = 'Força muscular normal';
+          severity = 'Escore total: ' + total + ' pontos';
+          description = 'Paciente com força muscular preservada. Sem evidências de polineuromiopatia do doente crítico.';
+        } else if (total >= 36) {
+          classification = 'Fraqueza muscular moderada';
+          severity = 'Escore total: ' + total + ' pontos - Atenção!';
+          description = 'Paciente apresenta fraqueza muscular moderada. Recomenda-se monitoramento e intervenção fisioterapêutica precoce.';
+        } else {
+          classification = 'Fraqueza muscular grave';
+          severity = 'Escore total: ' + total + ' pontos - Crítico!';
+          description = 'Paciente com fraqueza muscular grave compatível com polineuromiopatia do doente crítico. Requer reabilitação intensiva e acompanhamento multidisciplinar.';
+        }
+
+        classificationDisplay.textContent = classification;
+        severityDisplay.textContent = severity;
+        severityDescDisplay.textContent = description;
+
+        // Atualizar classe de severidade
+        severityDisplay.className = 'gcs-severity';
+        if (total >= 48) {
+          severityDisplay.classList.add('is-leve');
+        } else if (total >= 36) {
+          severityDisplay.classList.add('is-moderada');
+        } else {
+          severityDisplay.classList.add('is-grave');
+        }
+      }
+
+      selects.forEach(select => {
+        select.addEventListener('change', calculateMRC);
+      });
+
+      // Cálculo inicial
+      calculateMRC();
+    });
+  </script>
+  <style>
+    /* Estilos adicionais para a escala MRC */
+    .mrc-group {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f8f9fc;
+      border-radius: 10px;
+      border: 1px solid #e9edf4;
+    }
+    .mrc-group label {
+      font-weight: 600;
+      color: #1a2634;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    .mrc-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .mrc-row span {
+      flex: 0 0 180px;
+      font-size: 0.9rem;
+      color: #2c3e50;
+    }
+    .mrc-row select {
+      flex: 1;
+      min-width: 200px;
+      padding: 6px 10px;
+      border: 1px solid #dce3ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 0.85rem;
+      color: #1a2634;
+      cursor: pointer;
+    }
+    .mrc-row select:focus {
+      outline: none;
+      border-color: #0056b3;
+      box-shadow: 0 0 0 2px rgba(0,86,179,0.15);
+    }
+    .gcs-severity.is-moderada {
+      background: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+    }
+    .gcs-severity.is-grave {
+      background: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+    @media (max-width: 600px) {
+      .mrc-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .mrc-row span {
+        flex: 1;
+        font-weight: 500;
+      }
+      .mrc-row select {
+        min-width: auto;
+      }
+    }
+  </style>
+</body>
+</html>

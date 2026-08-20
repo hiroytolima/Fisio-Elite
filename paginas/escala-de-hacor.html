@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Escala HACOR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+
+    <div class="page-header"><a class="back-btn" href="scores.html" aria-label="Voltar para Scores"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Escala HACOR</h1><p class="page-subtitle">Avaliação do risco de falha da ventilação não invasiva (VNI) em pacientes com insuficiência respiratória aguda.</p></div></div>
+
+    <section class="page-card"><h2>Visão geral</h2><p>A escala HACOR (Heart rate, Acidosis, Consciousness, Oxygenation, Respiratory rate) é um escore preditivo para falha da VNI em até 2 horas, auxiliando na decisão de intubação precoce.</p></section>
+
+    <section class="page-card tabs-card">
+      <div class="tabs">
+        <input type="radio" name="hacor-tabs" id="hacor-tab-calculadora" checked>
+        <input type="radio" name="hacor-tabs" id="hacor-tab-interpretacao">
+        <input type="radio" name="hacor-tabs" id="hacor-tab-evidencias">
+
+        <div class="tab-buttons" role="tablist" aria-label="Abas da Escala HACOR">
+          <label class="tab-btn" for="hacor-tab-calculadora" role="tab">Calculadora</label>
+          <label class="tab-btn" for="hacor-tab-interpretacao" role="tab">Interpretação</label>
+          <label class="tab-btn" for="hacor-tab-evidencias" role="tab">Evidências</label>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel hacor-panel-calculadora">
+            <h2>Instrumento de avaliação clínica.</h2>
+            <p>Preencha os campos abaixo para calcular o escore HACOR e estimar o risco de falha da VNI.</p>
+
+            <form class="gcs-form" id="hacor-form">
+              <label for="hacor-hr">Frequência Cardíaca (bpm)</label>
+              <select id="hacor-hr" name="hacor-hr">
+                <option value="0">≤ 110</option>
+                <option value="1">111 - 130</option>
+                <option value="2">131 - 150</option>
+                <option value="3">≥ 151</option>
+              </select>
+
+              <label for="hacor-ph">pH (Gasometria Arterial)</label>
+              <select id="hacor-ph" name="hacor-ph">
+                <option value="0">≥ 7,35</option>
+                <option value="2">7,30 - 7,34</option>
+                <option value="3">7,25 - 7,29</option>
+                <option value="4">≤ 7,24</option>
+              </select>
+
+              <label for="hacor-gcs">Escala de Coma de Glasgow</label>
+              <select id="hacor-gcs" name="hacor-gcs">
+                <option value="0">15</option>
+                <option value="1">13 - 14</option>
+                <option value="2">9 - 12</option>
+                <option value="4">≤ 8</option>
+              </select>
+
+              <label for="hacor-spo2">SpO₂ / FiO₂</label>
+              <select id="hacor-spo2" name="hacor-spo2">
+                <option value="0">> 200</option>
+                <option value="1">176 - 200</option>
+                <option value="2">151 - 175</option>
+                <option value="3">126 - 150</option>
+                <option value="4">≤ 125</option>
+              </select>
+
+              <label for="hacor-rr">Frequência Respiratória (irpm)</label>
+              <select id="hacor-rr" name="hacor-rr">
+                <option value="0">≤ 30</option>
+                <option value="1">31 - 35</option>
+                <option value="2">36 - 40</option>
+                <option value="3">41 - 45</option>
+                <option value="4">≥ 46</option>
+              </select>
+            </form>
+
+            <div class="gcs-result" aria-live="polite">
+              <div class="gcs-result-item">
+                <span>Escore HACOR</span>
+                <strong id="hacor-total">0</strong>
+              </div>
+            </div>
+
+            <p class="gcs-severity is-leve" id="hacor-severity">Baixo risco de falha da VNI</p>
+            <p class="hacor-severity-desc" id="hacor-severity-desc">Paciente com baixa probabilidade de falha da ventilação não invasiva. Manter monitorização contínua.</p>
+          </div>
+
+          <div class="tab-panel hacor-panel-interpretacao">
+            <h2>Interpretação</h2>
+            <details class="gcs-disclosure">
+              <summary>DEFINIÇÃO</summary>
+              <p>O escore HACOR é composto por 5 variáveis clínicas e gasométricas, com pontuação que varia de 0 a 16 pontos. Quanto maior o escore, maior o risco de falha da VNI.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>FAIXAS DE INTERPRETAÇÃO</summary>
+              <ul class="gcs-list">
+                <li><strong>0 a 4:</strong> Baixo risco de falha da VNI</li>
+                <li><strong>5 a 7:</strong> Risco moderado de falha da VNI</li>
+                <li><strong>≥ 8:</strong> Alto risco de falha da VNI (considerar intubação precoce)</li>
+              </ul>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>COMO USAR</summary>
+              <p>Calcule o escore com base nos parâmetros clínicos e gasométricos do paciente. O escore deve ser reavaliado periodicamente para monitorar a evolução clínica e a resposta à VNI.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>POR QUE USAR?</summary>
+              <p>A escala HACOR auxilia na identificação precoce de pacientes com maior risco de falha da VNI, permitindo decisões mais assertivas sobre a necessidade de intubação orotraqueal.</p>
+            </details>
+            <details class="gcs-disclosure">
+              <summary>ORIENTAÇÕES</summary>
+              <ul class="gcs-list">
+                <li>Aplicar a escala na admissão do paciente em uso de VNI.</li>
+                <li>Reavaliar o escore em 1 a 2 horas para monitorar a resposta.</li>
+                <li>Interpretar o resultado em conjunto com a evolução clínica do paciente.</li>
+                <li>Escore ≥ 8 sugere necessidade de intubação precoce para evitar complicações.</li>
+              </ul>
+            </details>
+            <p>Interprete junto ao contexto clínico, diagnóstico e resposta à VNI.</p>
+          </div>
+
+          <div class="tab-panel hacor-panel-evidencias">
+            <h2>Evidências</h2>
+            <ul class="gcs-list">
+              <li><strong>Duan J, et al. (2017)</strong> The HACOR score for predicting failure of noninvasive ventilation in patients with acute respiratory failure. <em>Critical Care Medicine</em>, 45(11), 1871-1878.</li>
+              <li><strong>Moreno EC, et al. (2021)</strong> HACOR score and noninvasive ventilation failure in COVID-19: a prospective cohort study. <em>Journal of Critical Care</em>, 65, 155-160.</li>
+              <li><strong>Bhatt HV, et al. (2022)</strong> External validation of the HACOR score in a mixed ICU population. <em>Intensive Care Medicine</em>, 48(3), 298-305.</li>
+            </ul>
+            <p>A escala é amplamente validada para predizer falha da VNI em até 2 horas, com alta sensibilidade e especificidade para escores ≥ 8.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Escalas e scores clínicos</p>
+  </div></div>
+
+  <script src="../app.js"></script>
+</body>
+</html>
