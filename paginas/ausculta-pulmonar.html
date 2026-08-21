@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisio Elite | Ausculta Pulmonar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Estilos adicionais para as abas e players */
+    .tabs-container {
+      margin-top: 1.5rem;
+    }
+
+    .tabs-header {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+
+    .tab-btn.active {
+      color: #0ea5e9;
+      background: #f0f9ff;
+      border-bottom: 3px solid #0ea5e9;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1.5rem 0 0.5rem 0;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .audio-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      border: 1px solid #e2e8f0;
+      transition: border-color 0.2s;
+    }
+
+    .audio-card:hover {
+      border-color: #94a3b8;
+    }
+
+    .audio-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .audio-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    .audio-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .audio-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      margin-top: 0.2rem;
+      width: fit-content;
+    }
+
+    .audio-player {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 180px;
+    }
+
+    .audio-player audio {
+      height: 36px;
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
+    .audio-player audio::-webkit-media-controls-panel {
+      background: #f1f5f9;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #94a3b8;
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0.8rem;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      font-size: 0.95rem;
+    }
+
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.2rem;
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .add-btn:hover {
+      background: #0284c7;
+    }
+
+    .add-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .audio-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .audio-player {
+        width: 100%;
+      }
+      .audio-player audio {
+        max-width: 100%;
+      }
+      .tabs-header {
+        gap: 0.3rem;
+      }
+      .tab-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame"><div class="status"></div><div class="content">
+    <div class="topbar"><div class="brand"><div class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0012 0V3"/><path d="M6 15v2a2 2 0 002 2"/><circle cx="18" cy="18" r="3"/></svg></div><div class="brand-name">Fisio<span>Elite</span></div></div><div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div></div>
+    <div class="page-header"><a class="back-btn" href="../fisioapp-home.html" aria-label="Voltar para home"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><div><h1 class="page-title">Ausculta Pulmonar</h1><p class="page-subtitle">Interpretação de sons respiratórios e evidências clínicas.</p></div></div>
+
+    <!-- Conteúdo principal com abas -->
+    <section class="page-card">
+      <h2>Biblioteca de Sons Respiratórios</h2>
+      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Selecione uma categoria para ouvir os áudios e revisar as evidências.</p>
+
+      <div class="tabs-container">
+        <!-- Cabeçalho das abas -->
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="estertores-crepitantes">Estertores Crepitantes</button>
+          <button class="tab-btn" data-tab="estertores-subcrepitantes">Estertores Subcrepitantes</button>
+          <button class="tab-btn" data-tab="estridor">Estridor</button>
+          <button class="tab-btn" data-tab="ronco">Ronco</button>
+          <button class="tab-btn" data-tab="sibilos">Sibilos</button>
+          <button class="tab-btn" data-tab="vesicular">Vesicular/Normal</button>
+        </div>
+
+        <!-- Conteúdo: Estertores Crepitantes -->
+        <div class="tab-content active" id="tab-estertores-crepitantes">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Estertores Crepitantes</span>
+              <span class="audio-desc">Sons finos, explosivos e não contínuos. Associados a abertura de pequenas vias aéreas. Comum em pneumonia, edema pulmonar e fibrose.</span>
+              <span class="audio-badge">Evidência: Pneumonia / Edema / Fibrose</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/ESTERTORES CREPITANTES.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+
+        <!-- Conteúdo: Estertores Subcrepitantes -->
+        <div class="tab-content" id="tab-estertores-subcrepitantes">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Estertores Subcrepitantes</span>
+              <span class="audio-desc">Sons mais grossos que os crepitantes, de média frequência. Associados a secreções em brônquios de médio calibre. Comum em bronquite e DPOC.</span>
+              <span class="audio-badge">Evidência: Bronquite / DPOC</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/ESTERTORES SUBCREPITANTES.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+
+        <!-- Conteúdo: Estridor -->
+        <div class="tab-content" id="tab-estridor">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Estridor</span>
+              <span class="audio-desc">Som agudo, monofônico, predominante na inspiração. Associado a obstrução de vias aéreas superiores (laringe, traqueia).</span>
+              <span class="audio-badge">Evidência: Laringomalácia / Estenose / Corpo estranho</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/ESTRIDOR.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+
+        <!-- Conteúdo: Ronco -->
+        <div class="tab-content" id="tab-ronco">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Ronco</span>
+              <span class="audio-desc">Som grave, contínuo, de baixa frequência. Produzido por secreções ou obstrução em vias aéreas de grande calibre. Comum em DPOC e bronquite crônica.</span>
+              <span class="audio-badge">Evidência: DPOC / Bronquite / Hipersecreção</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/RONCO.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+
+        <!-- Conteúdo: Sibilos -->
+        <div class="tab-content" id="tab-sibilos">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Sibilos</span>
+              <span class="audio-desc">Sons contínuos, de alta frequência, predominantemente expiratórios. Produzidos por fluxo turbulento em vias aéreas estreitadas. Típicos de asma e broncoespasmo.</span>
+              <span class="audio-badge">Evidência: Asma / Broncoespasmo / DPOC</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/SIBILOS.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+
+        <!-- Conteúdo: Vesicular/Normal -->
+        <div class="tab-content" id="tab-vesicular">
+          <div class="audio-card">
+            <div class="audio-info">
+              <span class="audio-title">Vesicular / Normal</span>
+              <span class="audio-desc">Som suave, de baixa intensidade, predominante na inspiração. Considerado o som respiratório normal, auscultado em todo o tórax em indivíduos saudáveis.</span>
+              <span class="audio-badge">Evidência: Ausculta normal / Padrão de referência</span>
+            </div>
+            <div class="audio-player">
+              <audio controls>
+                <source src="../audios/VESICULAR⧸NORMAL.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+              </audio>
+            </div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar áudio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Fisio Elite - Navegue pelos quadros na home</p>
+  </div></div>
+
+  <script>
+    // Lógica de abas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remove active de todos os botões e conteúdos
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        // Ativa o botão clicado
+        this.classList.add('active');
+
+        // Ativa o conteúdo correspondente
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById('tab-' + tabId).classList.add('active');
+      });
+    });
+  </script>
+  <script src="../app.js"></script>
+</body>
+</html>
