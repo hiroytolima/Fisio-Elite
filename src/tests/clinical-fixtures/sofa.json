@@ -1,0 +1,36 @@
+[
+  {
+    "description": "Paciente hígido sem disfunções orgânicas",
+    "input": {
+      "pao2Fio2": 450,
+      "platelets": 250,
+      "bilirubin": 0.8,
+      "map": 85,
+      "vasopressors": "none",
+      "glasgow": 15,
+      "creatinine": 0.9,
+      "urineOutput": 1500
+    },
+    "expected": {
+      "totalScore": 0,
+      "mortalityRisk": "Mortalidade estimada < 10%"
+    }
+  },
+  {
+    "description": "Paciente em Choque Séptico grave e disfunção multissistêmica",
+    "input": {
+      "pao2Fio2": 90,
+      "platelets": 45,
+      "bilirubin": 6.5,
+      "map": 55,
+      "vasopressors": "norepinephrine_high",
+      "glasgow": 8,
+      "creatinine": 3.8,
+      "urineOutput": 300
+    },
+    "expected": {
+      "totalScore": 20,
+      "mortalityRisk": "Mortalidade estimada > 80%"
+    }
+  }
+]

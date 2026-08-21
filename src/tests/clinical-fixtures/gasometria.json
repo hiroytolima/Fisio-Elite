@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Gasometria Arterial dentro dos padrões de normalidade",
+    "input": {
+      "ph": 7.40,
+      "paco2": 40,
+      "hco3": 24,
+      "pao2": 95,
+      "fio2": 21
+    },
+    "expected": {
+      "disturbio": "Gasometria Arterial Normal",
+      "oxigenacao": "Normoxemia",
+      "relacaoPao2Fio2": 452
+    }
+  },
+  {
+    "description": "Acidose Respiratória Aguda não compensada com Hipoxemia Grave",
+    "input": {
+      "ph": 7.20,
+      "paco2": 65,
+      "hco3": 24,
+      "pao2": 55,
+      "fio2": 50
+    },
+    "expected": {
+      "disturbio": "Acidose Respiratória Não Compensada",
+      "oxigenacao": "Hipoxemia Grave",
+      "relacaoPao2Fio2": 110
+    }
+  }
+]

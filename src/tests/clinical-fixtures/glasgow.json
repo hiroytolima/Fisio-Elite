@@ -1,0 +1,30 @@
+[
+  {
+    "description": "Paciente consciente e orientado sem déficit neurológico",
+    "input": {
+      "eyeOpening": 4,
+      "verbalResponse": 5,
+      "motorResponse": 6,
+      "pupillaryReactivity": 0
+    },
+    "expected": {
+      "totalScore": 15,
+      "gcsPScore": 15,
+      "severity": "Trauma Cranioencefálico Leve"
+    }
+  },
+  {
+    "description": "Paciente com TCE Grave e indicação de IOT",
+    "input": {
+      "eyeOpening": 1,
+      "verbalResponse": 1,
+      "motorResponse": 3,
+      "pupillaryReactivity": 1
+    },
+    "expected": {
+      "totalScore": 5,
+      "gcsPScore": 4,
+      "severity": "Trauma Cranioencefálico Grave"
+    }
+  }
+]

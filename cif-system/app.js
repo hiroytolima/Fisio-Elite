@@ -56,7 +56,7 @@ function renderizarArvore(componente) {
     // Adicionar eventos de clique
     document.querySelectorAll('.tree-item').forEach(item => {
         item.addEventListener('click', function(e) {
-            if (e.target.closest('.btn-detalhes') || e.target.closest('.toggle')) return;
+            if (e.target.closest('.btn-detalhes')) return;
             const id = this.dataset.id;
             toggleFilhos(id);
         });

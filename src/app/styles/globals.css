@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+
+    /* Theme colors - Light */
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --primary-color: #0d9488;
+    --primary-hover: #0f766e;
+    --focus-ring: #0284c7;
+  }
+
+  .dark {
+    /* Theme colors - Dark */
+    --bg-main: #090d16;
+    --bg-card: #111827;
+    --bg-card-hover: #1f2937;
+    --border-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --primary-color: #14b8a6;
+    --primary-hover: #2dd4bf;
+    --focus-ring: #38bdf8;
+  }
+
+  .high-contrast {
+    /* Theme colors - High Contrast (WCAG 2.2 AAA Requirement) */
+    --bg-main: #000000;
+    --bg-card: #050505;
+    --bg-card-hover: #1a1a1a;
+    --border-color: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-muted: #ffff00;
+    --primary-color: #00ffff;
+    --primary-hover: #55ffff;
+    --focus-ring: #ffff00;
+  }
+}
+
+/* Base resets & focus indicators */
+*:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}

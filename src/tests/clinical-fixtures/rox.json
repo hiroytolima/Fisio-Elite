@@ -1,0 +1,26 @@
+[
+  {
+    "description": "Paciente com Baixo Risco de Falha da CNOF",
+    "input": {
+      "spo2": 96,
+      "fio2": 40,
+      "rr": 18
+    },
+    "expected": {
+      "roxIndex": 13.33,
+      "riskCategory": "Baixo Risco de Falha"
+    }
+  },
+  {
+    "description": "Paciente com Alto Risco de Falha e indicação de IOT",
+    "input": {
+      "spo2": 88,
+      "fio2": 80,
+      "rr": 34
+    },
+    "expected": {
+      "roxIndex": 3.24,
+      "riskCategory": "Alto Risco de Falha da CNOF"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "description": "Paciente com Baixo Risco de Falha da VNI",
+    "input": {
+      "hr": 95,
+      "ph": 7.38,
+      "gcs": 15,
+      "pao2Fio2": 250,
+      "rr": 24
+    },
+    "expected": {
+      "totalScore": 0,
+      "failureRisk": "Baixo Risco de Falha da VNI (< 20%)"
+    }
+  },
+  {
+    "description": "Paciente com Alto Risco de Falha da VNI",
+    "input": {
+      "hr": 130,
+      "ph": 7.22,
+      "gcs": 11,
+      "pao2Fio2": 110,
+      "rr": 36
+    },
+    "expected": {
+      "totalScore": 13,
+      "failureRisk": "Alto Risco de Falha da VNI (> 80%)"
+    }
+  }
+]
