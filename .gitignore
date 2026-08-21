@@ -1,0 +1,55 @@
+# Logs & Process
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostic & Coverage reports
+coverage
+*.lcov
+.nyc_output
+
+# Build outputs
+dist
+dist-ssr
+*.local
+build
+
+# Dependencies
+node_modules
+.pnpm-store
+
+# Environment variables & Secrets (Sec. 22 do Plano)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDEs and Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary & Cache
+.cache
+.vite
+.eslintcache
+.stylelintcache
