@@ -73,7 +73,7 @@ export const HomePage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Banner de Boas-vindas */}
-      <section className="bg-gradient-to-r from-slate-900 via-teal-950/40 to-slate-900 border border-slate-800 rounded-2xl p-6 lg:p-8 relative overflow-hidden">
+      <section className="bg-linear-to-r from-slate-900 via-teal-950/40 to-slate-900 border border-slate-800 rounded-2xl p-6 lg:p-8 relative overflow-hidden">
         <div className="max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30">
             <Stethoscope className="w-3.5 h-3.5" aria-hidden="true" />
