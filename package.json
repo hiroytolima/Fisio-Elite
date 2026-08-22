@@ -12,7 +12,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:a11y": "vitest run src/tests/a11y",
+    "test:security": "vitest run src/tests/security",
     "test:clinical": "vitest run src/modules/**/tests",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "security:scan": "npm audit --audit-level=high",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -39,7 +43,9 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@axe-core/react": "^4.10.1",
+    "@playwright/test": "^1.62.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
