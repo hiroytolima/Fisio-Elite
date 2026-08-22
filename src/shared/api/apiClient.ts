@@ -22,7 +22,7 @@ export class ApiError extends Error {
 /**
  * Cliente de API com suporte a Request-ID, Normalização de Erros e Segurança
  */
-export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+export async function apiFetch<T>(endpoint: string, options: globalThis.RequestInit = {}): Promise<T> {
   const requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   const headers = new Headers(options.headers);
 

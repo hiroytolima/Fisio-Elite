@@ -2,12 +2,6 @@ import { redactSensitiveData } from './redact';
 
 type LogLevel = 'info' | 'warn' | 'error';
 
-interface LogPayload {
-  message: string;
-  context?: Record<string, unknown>;
-  error?: unknown;
-}
-
 class Logger {
   private log(level: LogLevel, message: string, context?: Record<string, unknown>, error?: unknown): void {
     const timestamp = new Date().toISOString();
