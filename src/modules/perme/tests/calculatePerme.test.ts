@@ -19,10 +19,10 @@ describe('PERME Pure Domain Function — Unit Tests', () => {
   it('deve calcular mobilidade excelente (32/32)', () => {
     const result = calculatePerme({
       mentalStatus: 3,
-      mobilityBarriers: 2,
-      functionalStrength: 3,
-      bedMobility: 3,
-      transfers: 5,
+      mobilityBarriers: 4,
+      functionalStrength: 4,
+      bedMobility: 6,
+      transfers: 6,
       gait: 3,
       endurance: 3,
     });
