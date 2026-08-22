@@ -11,6 +11,7 @@ import {
   Search,
   ShieldCheck,
   Award,
+  Users,
 } from 'lucide-react';
 import { AccessibilityToolbar } from '@/shared/accessibility/AccessibilityToolbar';
 
@@ -20,6 +21,8 @@ export const MainLayout: React.FC = () => {
 
   const navItems = [
     { label: 'Início', path: '/', icon: Activity },
+    { label: 'Pacientes & Leitos', path: '/patients', icon: Users },
+    { label: 'Avaliação CAM-ICU', path: '/camicu', icon: Brain },
     { label: 'Escore SOFA', path: '/sofa', icon: Calculator },
     { label: 'Índice ROX', path: '/rox', icon: Calculator },
     { label: 'Escala de Glasgow', path: '/glasgow', icon: Brain },

@@ -5,10 +5,13 @@ import { RoxSchema } from '@/modules/rox/schemas/rox.schema';
 import { calculateRox } from '@/modules/rox/domain/calculateRox';
 import { roxMetadata } from '@/modules/rox/metadata/rox.metadata';
 import { RoxInput, RoxResult } from '@/modules/rox/domain/rox.types';
-import { HeartPulse, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
+import { PatientsRepository } from '@/modules/patients/api/patients.repository';
+import { HeartPulse, CheckCircle2, AlertTriangle, Info, Save } from 'lucide-react';
 
 export const RoxPage: React.FC = () => {
   const [result, setResult] = useState<RoxResult | null>(null);
+  const [patientIdInput, setPatientIdInput] = useState('');
+  const [saveStatus, setSaveStatus] = useState<string | null>(null);
 
   const {
     register,
@@ -26,6 +29,29 @@ export const RoxPage: React.FC = () => {
   const onSubmit = (data: RoxInput) => {
     const calculated = calculateRox(data);
     setResult(calculated);
+    setSaveStatus(null);
+  };
+
+  const handleSaveToPatient = async () => {
+    if (!result) return;
+    if (!patientIdInput.trim()) {
+      setSaveStatus('Por favor, informe o ID do paciente.');
+      return;
+    }
+
+    try {
+      await PatientsRepository.saveAssessment({
+        organizationId: '123e4567-e89b-12d3-a456-426614174000',
+        patientId: patientIdInput.trim(),
+        evaluatorId: '00000000-0000-0000-0000-000000000000',
+        moduleType: 'rox',
+        scoreData: { roxIndex: result.roxIndex } as Record<string, unknown>,
+        resultSummary: `Índice ROX: ${result.roxIndex} (${result.riskCategory})`,
+      });
+      setSaveStatus('Índice ROX salvo com sucesso no prontuário!');
+    } catch (err: unknown) {
+      setSaveStatus(`Erro ao salvar: ${(err as Error).message}`);
+    }
   };
 
   return (
@@ -125,6 +151,32 @@ export const RoxPage: React.FC = () => {
                     {result.riskCategory}
                   </div>
                   <p className="text-xs text-slate-300">{result.recommendation}</p>
+                </div>
+
+                {/* Gravação no Prontuário do Paciente */}
+                <div className="pt-3 border-t border-slate-800 space-y-3">
+                  <label className="block text-xs font-medium text-slate-400">ID ou Prontuário do Paciente:</label>
+                  <input
+                    type="text"
+                    placeholder="Cole o ID do paciente aqui..."
+                    value={patientIdInput}
+                    onChange={(e) => setPatientIdInput(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={handleSaveToPatient}
+                    className="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 border border-slate-700"
+                  >
+                    <Save className="w-4 h-4 text-blue-400" /> Salvar no Prontuário
+                  </button>
+
+                  {saveStatus && (
+                    <p className="text-xs text-blue-300 bg-blue-500/10 p-2.5 rounded-lg border border-blue-500/30">
+                      {saveStatus}
+                    </p>
+                  )}
                 </div>
               </div>
             ) : (
